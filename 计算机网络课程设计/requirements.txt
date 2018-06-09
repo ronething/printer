@@ -1,0 +1,9 @@
+asn1crypto==0.24.0
+cffi==1.11.5
+cryptography==2.2.2
+idna==2.6
+pycparser==2.18
+pyftpdlib==1.5.4
+pyOpenSSL==17.5.0
+pysendfile==2.0.1
+six==1.11.0
