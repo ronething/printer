@@ -1,4 +1,4 @@
- # vmware 安装 ubutnu 18.04 LTS
+ # vmware 安装 ubuntu 18.04 LTS
 
 首先 我们要下载 ubuntu 镜像
 
