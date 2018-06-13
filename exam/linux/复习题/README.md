@@ -1,7 +1,5 @@
 # linux模拟试题
 
-先感谢一波不知道是谁的“魔女” 感谢你的资料啊哈哈哈
-
 - 选择题
 
 2、dns域名系统主要负责主机名和____之间的解析。 (C)
@@ -149,26 +147,41 @@ A  \$#    B  \$@    C  \$0   D  $!
 1、linux系统的特点是什么？
 
 ```
-
+开放性、多用户、多任务、良好的用户界面、设备独立性、丰富的网络功能、可靠的系统安全、良好的可移植性。
 ```
 
 2、解释linux终端概念。
 
 ```
-
+1)Linux终端也称为虚拟控制台 .一台计算机的输入输出设备就是一个物理的控制台 .
+2)如果在一台计算机上用软件的方法实现了多个互不干扰独立工作的控制台界面，就是实现了多个虚拟控制台。 
+3)Linux终端的工作方式是字符命令行方式，用户通过键盘输入命令进行操作，可以通过Linux终端对系统进行控制。 
 ```
 
 3、说明VFS（虚拟文件系统）的作用，并使用图例表示。
 
 ```
-
+Linux系统可以支持多种文件系统，为此，必须使用一种统一的接口，这就是虚拟文件系统(VFS)。通过VFS将不同文件系统的实现细节隐藏起来，因而从外部看上去，所有的文件系统都是一样的。
 ```
+
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9lgt0pydj20a10baaa7.jpg)
 
 4、以图解方式解释服务的xinetd工作模式和stand-alone工作模式，并说明选择不同工作模式的原则。
 
 ```
+1）运行独立的守护进程工作方式称作：stand－alone。它是Unix传统的C/S模式的访问模式。服务器监听（Listen）在一个特点的端口上等待客户端的联机。如果客户端产生一个连接请求，守护进程就创建（Fork）一个子服务器响应这个连接，而主服务器继续监听。以保持多个子服务器池等待下一个客户端请求。
+```
+
+![stand-alone](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9lw41uvej20bg058aa5.jpg)
 
 ```
+2）从守护进程的概念可以看出，对于系统所要通过的每一种服务，都必须运行一个监听某个端口连接所发生的守护进程，这通常意味着资源浪费。
+为了解决这个问题，Linux引进了“网络守护进程服务程序”的概念。Redhat Linux 9.0使用的网络守护进程是xinted（eXtended InterNET daemon）。和stand－alone模式相比xinted模式也称 Internet Super－Server（超级服务器）。
+xinetd能够同时监听多个指定的端口，在接受用户请求时，他能够根据用户请求的端口不同，启动不同的网络服务进程来处理这些用户请求。
+可以把xinetd看做一个管理启动服务的管理服务器，它决定把一个客户请求交给那个程序处理，然后启动相应的守护进程。 
+```
+
+![xinetd](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9m0nnkivj20e4057wen.jpg)
 
 ---
 
@@ -181,8 +194,32 @@ A  \$#    B  \$@    C  \$0   D  $!
 ```
 
 ```shell
-
+#!/bin/bash
+if [ "$2" -lt 60 -a "$2" -ge 0 ]
+then
+    echo "$1,$2 Failed!" >> mark.txt
+elif [ "$2" -ge 60 -a "$2" -lt 70 ]
+then
+    echo "$1,$2 Passed!" >> mark.txt
+elif [ "$2" -ge 70 -a "$2" -lt 80 ]
+then
+    echo "$1,$2 Medium!" >> mark.txt
+elif [ "$2" -ge 80 -a "$2" -lt 90 ]
+then
+    echo "$1,$2 Good!" >> mark.txt
+elif [ "$2" -ge 90 -a "$2" -le 100 ]
+then
+    echo "$1,$2 Excellent!" >> mark.txt
+else
+    echo "error"
+    exit 1
+fi
+exit 0
 ```
+
+效果图：
+
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9mqdm2juj20nq03iweo.jpg)
 
 ````
 2、根据以下目标依赖关系图，写出makefile文件内容。
@@ -191,7 +228,12 @@ A  \$#    B  \$@    C  \$0   D  $!
 ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9jf33yn0j20ic09r40t.jpg)
 
 ```makefile
-
+my_app: my_app.o greeting.o
+	gcc my_app.o greeting.o -o my_app
+my_app.o: my_app.c
+	gcc -c my_app.c -o greeting.c -Ifunctions
+greeting.o: functions/greeting.c
+	gcc -c functions/greeting.c -o greeting.o -Ifunctions
 ```
 
 ```
@@ -201,6 +243,39 @@ A  \$#    B  \$@    C  \$0   D  $!
 ```
 
 ```shell
+# crontab 文件内容
+0 23 * * * /root/startftp
+0 3  * * * /root/stopftp
+# 相关脚本
 
+# startftp
+#!/bin/bash
+/usr/sbin/vsftpd start
+# 注： ps -ef | grep vsftp | grep -v grep 为去掉带有grep的那一条进程
+# grep --help 查看 -v 参数 
+# -v, --invert-match        select non-matching lines
+# awk '{print $2}' 打印第二列 即打印进程号pid
+tmp=`ps -ef | grep vsftpd | grep -v grep | awk '{print $2}'`
+# -n string 如果字符串不为空则为真
+if [ -n $tmp ]
+then
+	echo `ps -ef | grep vsftp |grep -v grep`  >> /tmp/ftplog
+else
+	echo "FTP START FAILED" >> /tmp/ftplog
+
+# stopftp
+#!/bin/bash
+/usr/sbin/vsftpd stop
+# 注： ps -ef | grep vsftp | grep -v grep 为去掉带有grep的那一条进程
+# grep --help 查看 -v 参数 
+# -v, --invert-match        select non-matching lines
+# awk '{print $2}' 打印第二列 即打印进程号pid
+tmp=`ps -ef | grep vsftpd | grep -v grep | awk '{print $2}'`
+# -z string 如果字符串为空则为真
+if [ -z $tmp ]
+then
+	echo "FTP STOP SUCCESS"  >> /tmp/ftplog
+else
+	echo "FTP STOP FAILED" >> /tmp/ftplog
 ```
 
