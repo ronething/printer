@@ -277,3 +277,23 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 - 估价函数：用来估计节点重要性，定义为从初始节点$S_{0}$出发，约束经过节点n到达目标节点$S_{g}$的所有路径中最小路径代价的估计值。一般形式：             $f(n)=g(n)+h(n)$ 其中，$g(n)$是从初始节点$S_{0}$到节点$n$的实际代价；$h(n)$是从节点$n$到目标节点$S_{g}$的最优路径的估计代价。 
 - $h(n)$也称为启发函数
 
+---
+
+第 4 章 计算智能
+
+- AI，BI，CI
+  - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsdl5k2ej3j20wg0o5t9y.jpg)
+- MP模型是美国心理学家麦克洛奇(W.McM  ulloch)和数理逻辑学家皮茨(W.Pitts) 根据生物神经元的功能和结构，于1943年提出的一种将神经元看作二进制阈值元件的简单模型。
+- 常用的人工神经元模型
+  - 阈值型(Threshold)
+  - 分段线性强饱和型(Linear  Saturation)
+  - S型(Sibmoid)
+  - 子阈累积型(Subthreshold  Summation)
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsdldvbwe4j20wa0o2762.jpg)
+- 多层前馈网络的典型代表是BP网络。
+- 一个神经网络的隐含层越多，其复杂度就会越高。
+- 反馈网络的典型代表是 Hopfield 网络模型。
+- 所谓反馈联结方式是指一个神经元的输出可以被反馈至同层或前层的神经元。
+- 单层感知器
+- BP网络模型
+- Hopfield网络模型
