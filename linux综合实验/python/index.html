@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/jquery-2.0.3.js"></script>
+    <style>
+        table,
+        td {
+            border: 1px solid #111
+        }
+    </style>
+</head>
+
+<body>
+    <button id="hello">查看数据表</button>
+    <script>
+        $("#hello").click(function () {
+            $(this).attr("disabled", "disabled");
+            var html = $.ajax({
+                async: true,
+                url: "/htbin/count.py",
+                dataType: "json",
+                success: function (data) {
+                    var table = document.createElement('table'),
+                        string = "";
+                    for (var key in data) {
+                        string = "";
+                        string = "<tr><td>" + key + "</td>" +
+                            "<td>" + data[key] + "</td></tr>";
+
+                        table.innerHTML += string;
+                    }
+
+                    document.body.appendChild(table);
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+
+    </script>
+</body>
+
+</html>
