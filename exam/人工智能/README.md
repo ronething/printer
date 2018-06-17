@@ -47,7 +47,7 @@ BP神经网络算法至少需要2层神经元。一层是输入层，一层是�
 
 ID3算法的目的是构造一棵树。树的根节点为分类开始。叶节点是实例。中间节点是属性，边是属性的值。
 
-MP模型是1943年心理学家W.McCulloch和数理学家W.Pitts提出的模型。
+MP模型是1943年心理学家$W.McCulloch$和数理学家$W.Pitts$提出的模型。
 
 神经网络模型中，激发函数若采用S型（Simoid）。主要针对神经元的饱和特性。
 
@@ -124,6 +124,8 @@ $$\forall x((p(x)\vee R(x))$$中的$$P(x)$$不在x 的辖域中。
 AI、BI、CI是完全独立的不同的三种智能。（计算智能是智力的低层认知，主要取决于数值数据而不依赖于知识。人工智能是在计算智能的基础上引入知识而产生的智力中层认知。生物智能，尤其是人类智能，则是最高层的智能。即CI包含AI包含BI）
 
 若两个个体分别表达为：001101和110010，若随机交叉点为3和5（自左向右数），则交叉后的新个体为：001010和110101。
+
+<span id="ga">单点交叉、两点交叉</span>
 
 > 书本p118
 >
@@ -209,6 +211,10 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 
 ---
 
+- 以下为知识点
+
+---
+
 - 范式
 
   （1）由有限个简单合取式构成的析取式称为析取范式。
@@ -283,17 +289,134 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 
 - AI，BI，CI
   - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsdl5k2ej3j20wg0o5t9y.jpg)
+
 - MP模型是美国心理学家麦克洛奇(W.McM  ulloch)和数理逻辑学家皮茨(W.Pitts) 根据生物神经元的功能和结构，于1943年提出的一种将神经元看作二进制阈值元件的简单模型。
+
 - 常用的人工神经元模型
   - 阈值型(Threshold)
   - 分段线性强饱和型(Linear  Saturation)
   - S型(Sibmoid)
   - 子阈累积型(Subthreshold  Summation)
+
 - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsdldvbwe4j20wa0o2762.jpg)
+
 - 多层前馈网络的典型代表是BP网络。
+
 - 一个神经网络的隐含层越多，其复杂度就会越高。
+
 - 反馈网络的典型代表是 Hopfield 网络模型。
+
 - 所谓反馈联结方式是指一个神经元的输出可以被反馈至同层或前层的神经元。
-- 单层感知器
-- BP网络模型
-- Hopfield网络模型
+
+- 单层感知器是一种只具有单层可计算节点的前馈网络。
+
+- 多层感知器是通过在单层感知器的输入、输出层之间加入一层或多层处理单元所构成的。其拓扑结构与多层前馈网络相似。
+
+- BP网络模型：多层前馈网络
+
+- Hopfield网络模型：单层全互联的对称反馈网络模型。
+
+- 离散 Hopfield 网络和连续 Hopfield 网络。
+
+- 离散 Hopfield 模型的稳定性： $x(t)$ 表示网络在时刻t的状态，$t=0$ 时，网络的状态就是由输入模式确定的初始状态。如果从某一时刻$t$开始存在一个有限的时间$\Delta t$，网络的状态不再发生变化，即 $x(t+\Delta t)=x(t)$ $(\Delta t>0)$ 则称网络是稳定的。
+
+- 进化计算主要包括以下四大分支：
+
+  - 遗传算法（Genetic Algorithm，GA）
+  - 进化策略（Evolutionary Strategy，ES）
+  - 进化规划（Evolutionary Programming，EP）
+  - 遗传规划（Genetic Programming，GP）
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsegbx33eoj20uy0fdmye.jpg)
+
+- 自然界生物进化过程是进化计算的生物学基础，它主要包括遗传(Heredity)、变异(Mutation)和进化(Evolution)理论。
+
+- 与传统算法相比，进化计算具有以下优良特征：
+
+  - 自组织性
+  - 自适应性
+  - 并行性
+  - 多解性
+  - 全局优化性
+  - 内在学习性
+  - 统计性
+  - 稳健性
+
+- 标准的遗传操作包括以下3种基本形式：  
+
+  - 选择（Selection）
+  - 交叉（Crossover）  
+  - 变异（Mutation）
+
+- 遗传算法可形式化地描述为 $GA=(P(0),N,l,M,s,g,P,f,T)$  
+
+  - $P(0)=\{P_{1}(0),P_{2}(0),..,P_{n}(0)\}$ 表示初始种群
+  - $N$ 表示种群规模
+  - $l$ 表示编码串的长度
+  - $s$ 表示选择策略
+  - $g$ 表示遗传算子，它包括选择算子$Q_{r}$、交叉算子$Q_{c}$和变异算子$Q_{m}$
+  - $P$ 表示遗传算子的操作概率，它包括选择概率$P_{r}$、交叉概率$P_{c}$和变异概率$P_{m}$
+  - $f$ 是适应度函数
+  - $T$ 是终止标准
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsehhleifmj20t10ifdgq.jpg)
+
+- 二进制编码
+
+- 格雷编码 模2加法和异或等同。1+1=0+0=0 1+0=0+1=1
+
+- 实数编码
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsei4uqassj20rg0h0aav.jpg)
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsei64xvgrj20ve0jx0vi.jpg)
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fseie2ud1wj20vk0hsq4i.jpg)
+
+- 基本遗传算法操作：
+
+  - 选择
+  - 交叉
+  - 变异
+
+- 选择操作
+
+  - 比例选择
+    - 轮盘赌选择
+    - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fseijannp4j20va0ivwgj.jpg)
+    - 繁殖池选择
+    - 排序选择（不常用）
+    - 竞技选择（不常用）
+
+- 交叉操作
+
+  - 根据个体编码方法的不同，可以分为如下两种：
+    - 二进制交叉 主要包括单点交叉，两点交叉。多点交叉和均匀交等方法。单点交叉和多点交叉前面复习题有提到。[点击跳转](#ga)
+      - 多点交叉
+      - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsej12gvfnj20wf0jr416.jpg)
+      - 均匀交叉
+      - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsej30nq9tj20w10jz40p.jpg)
+    - 实值交叉 
+      - 离散交叉
+        - 部分离散交叉
+        - 整体离散交叉
+      - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsej7nokabj20vg0jrtbw.jpg)
+      - 算术交叉
+
+- 变异操作
+
+  - 二进制值变异
+  - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsejakfrtcj20ug08rgmp.jpg)
+  - 实值变异
+  - 基于位置的变异
+  - 基于次序的变异
+  - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsejcqdnsuj20v80dvdhn.jpg)
+
+
+
+
+
+
+
+
+
