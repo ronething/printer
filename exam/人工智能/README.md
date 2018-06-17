@@ -367,7 +367,7 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 
 - 实数编码
 
-- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsei4uqassj20rg0h0aav.jpg)
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fseozbaovdj20rg0h0ju3.jpg)
 
 - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsei64xvgrj20ve0jx0vi.jpg)
 
