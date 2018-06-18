@@ -419,10 +419,10 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 - 模糊集的表示
 - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfl2hr8xcj20vz0j6wg8.jpg)
 - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfl2tgzi5j20vm0h6js8.jpg)
-- ![1529323379780](C:\Users\ADMINI~1\AppData\Local\Temp\1529323379780.png)
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfqde8fmhj20v20ikq4o.jpg)
 - 记住加号不是加号，''/''不是除号，$\int $不是数学中的积分符号，他们只是为了表示模糊集而设定出来的一些符号而已。
 - 模糊集的运算
-- ![1529323707369](C:\Users\ADMINI~1\AppData\Local\Temp\1529323707369.png)
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfqe5ceapj20v40jewg8.jpg)
 - 定义4.4 为叙述简便，模糊集合论中通常用“$\vee$”代表max，“$\wedge $”代表min，即有
 
   $F\cup G_{:\mu F\cup G}(u)=\mu F(u)\vee \mu G(u)$
