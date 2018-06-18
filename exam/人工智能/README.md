@@ -412,11 +412,104 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
   - 基于次序的变异
   - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsejcqdnsuj20v80dvdhn.jpg)
 
+---
 
+- 模糊集的定义（隶属函数的概念 U论域的范围 [0,1]）
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfkuxez12j20vo0hp409.jpg)
+- 模糊集的表示
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfl2hr8xcj20vz0j6wg8.jpg)
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfl2tgzi5j20vm0h6js8.jpg)
+- ![1529323379780](C:\Users\ADMINI~1\AppData\Local\Temp\1529323379780.png)
+- 记住加号不是加号，''/''不是除号，$\int $不是数学中的积分符号，他们只是为了表示模糊集而设定出来的一些符号而已。
+- 模糊集的运算
+- ![1529323707369](C:\Users\ADMINI~1\AppData\Local\Temp\1529323707369.png)
+- 定义4.4 为叙述简便，模糊集合论中通常用“$\vee$”代表max，“$\wedge $”代表min，即有
 
+  $F\cup G_{:\mu F\cup G}(u)=\mu F(u)\vee \mu G(u)$
+  $F\cap G_{:\mu F\cap G}(u)=\mu F(u)\wedge \mu G(u)$
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsflv6vwg9j20vr0ko0ul.jpg)
+- 模糊关系的合成（见上图）注意先$\wedge$ 再$\vee$ 图中例子：
 
+  $R(1,1)=(0.4\wedge0.7)\vee(0.5\wedge0.2)\vee(0.6\wedge0.5)=0.4\vee0.2\vee0.5=0.5$
+- 模糊变换
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfm1puyhtj20uu0j4gmj.jpg)
 
+---
 
+- 粗糙集（Rough Set，RS）
 
+- 模糊逻辑并未能真正解决“含糊”问题。
 
+- 信息系统: 信息系统是RS理论研究的主体，它被抽象为一个数据集，即一张数据表。
 
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfmfmydxdj20vy0igwft.jpg)
+
+- 不分明关系 
+
+- 等价类 
+
+- 等价划分（等价类的集合），记为$U/IND(B)$或者$U/B$。
+
+- 上近似和下近似
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfmr35g1nj20vg0jpmzk.jpg)
+
+- 边界区域和粗糙集
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfmxfvdbdj20vj0ih406.jpg)
+
+- 决策表的约简：决策表约简是指化简决策表中的条件属性和属性值，使得决策表在保持决策能力的同时，具有较少的条件属性和属性值。    
+
+- 所谓决策能力，是指分类能力，即依据条件属性值，判别对象的类属。 
+
+- 决策表的约简的过程
+  - 一致性检查
+  - 条件属性约简
+  - 属性值约简
+
+- 一致性检查：
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfnwr5181j20vb0kggn6.jpg)
+
+- 条件属性的约简：属性约简实际上就是要消去决策表中某些不必要的列。其概念主要包括属性的必要性、属性集的约简、约简核、分明矩阵等。 
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfo3oe1vjj20un0g3q4g.jpg)
+
+- 分明矩阵
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfo4jc58tj20v60aiab1.jpg)
+
+- 约简核 *分明矩阵*中所有只包含单一属性元素的矩阵项的集合，即
+
+  $CORE(A)=\{ a\in A | m_{ij}=\{ a \}, i, j=1, 2 , … , n \}$
+
+- 约简核需要扩充
+
+  上述生成的约简核，往往不是相应属性集的约简，原因是生成过程会丢失一些不能来自单属性元素的必要属性。因此，必须经过适当扩充，才能生成约简。
+
+- 约简核扩充的方法
+  ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfoche0f4j20us0du76b.jpg)
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfoehcqmwj20v80jemzb.jpg)
+
+- 属性值的约简
+
+  由于决策表的每一行都可看做一条决策规则，因此属性值约简就是约简决策规则。
+
+  消除重复行，然后确定每行条件属性的核值，最后再约简每一行。
+
+- 消除重复行，
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfoihe1zrj20uf0hi74m.jpg)
+
+- 消除重复行后
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfoq6n3skj20uw0hzt9u.jpg)
+
+- 确定每行条件的核值
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfoqq2dynj20ux0jwabo.jpg)
+
+- 约简每一行
+
+- ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfop5d3lmj20uy0jkac1.jpg)
