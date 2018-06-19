@@ -207,7 +207,15 @@ $$(A \Leftrightarrow B)\wedge(\sim A \vee B)$$是可满足的 （应该是正确
 
 ![](http://pa58zqlgq.bkt.clouddn.com/20180614015036.png)
 
+归结式（课本P60）
 
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsgjhoyrfvj20x607tgms.jpg)
+
+子句集的化简
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsgjupphltj20mf0lntb9.jpg)
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsgljcyw8yj20va0h67a6.jpg)
 
 ---
 
