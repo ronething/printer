@@ -20,6 +20,8 @@ L、¬L 为互解文字，L∧¬L→□
 
 语义网络是一种有向图，它有5 个级别，7 种类型。
 
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fshyae3rt2j20ni0ekk1y.jpg)
+
 对象与类是实例关系。
 
 基于语义网络的推理主要有网络匹配、网络继承和网络演绎三种
