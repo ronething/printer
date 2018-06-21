@@ -24,6 +24,10 @@
 
   （软件设计模式和设计模式不一样，软件设计模式分为三个层次：架构模式、设计模式和习惯用法）
 
+  - 软件设计模式概念
+
+    软件设计模式是对软件设计经验的总结，是对软件设计中反复出现的设计问题的成功解决方案的描述。
+
   设计模式是中层模式，是针对系统局部设计问题给出的解决方案。
 
 - 物联网（？？百度）
@@ -46,7 +50,7 @@
 - 软件体系结构风格
 
   - 面向对象设计风格
-    
+
   - [结构化设计风格](https://baike.baidu.com/item/%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1/3073321)
 
     结构化设计，亦称SD(Structured Design)，是一种面向数据流的设计方法，目的在于确定软件的结构。结构化分析 是一种面向功能或面向数据流的需求分析方法，采用自顶向下、逐层分解的方法，建立系统的处理流程
@@ -71,11 +75,297 @@
 
 - 设计模式
 
+  - 注：以下 UML 图为平时实验所画，不一定对（以课本为主）。
+
   - 单例模式
+
+    
   - 多例模式
-  - 简单工厂方法模式
-  - 工厂模式
+  - 简单工厂方法模式（课本P10）
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjbpzguzoj20er08kwel.jpg)
+
+    ```java
+    // SimpleFactory.java
+
+    package cn.edu.scau.cmi.zhengwanxing.simplefactory;
+
+    import cn.edu.scau.cmi.zhengwanxing.domain.CarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.domain.DriverDamage;
+    import cn.edu.scau.cmi.zhengwanxing.domain.Insurance;
+    import cn.edu.scau.cmi.zhengwanxing.domain.MultiAccident;
+    import cn.edu.scau.cmi.zhengwanxing.domain.PersonDamage;
+
+    public class SimpleFactory {
+
+      public static Insurance getInsurance(String accident){
+        switch(accident){
+            case "汽车损坏": return new CarDamage();
+            case "司机受伤": return new DriverDamage();
+            case "多种事故": return new MultiAccident();
+            case "人员伤亡": return new PersonDamage();
+        }
+        return null;
+      }
+    }
+
+    // CarDamage.java
+
+    package cn.edu.scau.cmi.zhengwanxing.domain;
+
+    public class CarDamage extends Insurance{
+
+      @Override
+      public String getMessage() {
+        // TODO Auto-generated method stub
+        return "保险信息：汽车损坏";
+      }
+
+    }
+
+    // Insurance.java
+
+    package cn.edu.scau.cmi.zhengwanxing.domain;
+
+    public abstract class Insurance {
+      public abstract String getMessage();
+      }
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import java.util.Scanner;
+
+    import cn.edu.scau.cmi.zhengwanxing.domain.Insurance;
+    import cn.edu.scau.cmi.zhengwanxing.simplefactory.SimpleFactory;
+
+    public class FactoryClient {
+
+      public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        System.out.println("请选择保险：");
+        String type;
+        Scanner input=new Scanner(System.in);
+        type=input.nextLine();
+        Insurance ins=SimpleFactory.getInsurance(type);
+        System.out.println(ins.getMessage());
+        input.close();
+      }
+
+    }
+    ```
+
+    简单工厂方法模式的特点是仅仅有一个具体的创建者类，并且在此类中包含一个静态的工厂方法 factory() 。
+
+    简单工厂方法模式不符合开闭原则。
+
+  - 工厂模式（课本P12）
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjc9kvk5zj20fe08v0t2.jpg)
+
+    ```java
+    // Factory.java
+
+    package cn.edu.scau.cmi.zhengwanxing.factory;
+
+    import cn.edu.scau.cmi.zhengwanxing.domain.Insurance;
+
+    public interface Factory {
+    public Insurance createInsurance();
+    }
+
+    // CarDamageFactory.java
+
+    package cn.edu.scau.cmi.zhengwanxing.factory;
+
+    import cn.edu.scau.cmi.zhengwanxing.domain.CarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.domain.Insurance;
+
+    public  class CarDamageFactory implements Factory{
+
+      public Insurance createInsurance(){
+          return new CarDamage();
+      }
+    }
+
+    // CarDamage.java 
+    // Insurance.java
+    // 均与上面简单工厂方法一样
+
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import java.util.Scanner;
+
+    import cn.edu.scau.cmi.zhengwanxing.domain.Insurance;
+    import cn.edu.scau.cmi.zhengwanxing.factory.CarDamageFactory;
+    import cn.edu.scau.cmi.zhengwanxing.factory.DriverDamageFactory;
+    import cn.edu.scau.cmi.zhengwanxing.factory.MultiAccidentFactory;
+    import cn.edu.scau.cmi.zhengwanxing.factory.PersonDamageFactory;
+
+    public class FactoryClient {
+
+      public static void main(String[] args) {
+          // TODO Auto-generated method stub
+
+          System.out.println("请选择保险：");
+          String type;
+          Scanner input=new Scanner(System.in);
+          type=input.nextLine();
+          Insurance ins=null;
+          switch(type){
+            case "司机受伤":{DriverDamageFactory dd=new DriverDamageFactory();ins=dd.createInsurance();break;}
+            case "汽车损坏":{CarDamageFactory cf=new CarDamageFactory();ins=cf.createInsurance();break;}
+            case "人员伤亡":{PersonDamageFactory pf=new PersonDamageFactory();ins=pf.createInsurance();break;}
+            case "多种事故":{MultiAccidentFactory mf=new MultiAccidentFactory();ins=mf.createInsurance();break;}
+          }
+          System.out.println(ins.getMessage());
+          input.close();
+      }
+
+    }
+
+    ```
+
+    每个产品类对应与一个工厂类，工厂类只负责创建相应的产品类的对象。
+
   - 抽象工厂模式
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjcnbyx5aj20fe0czq3n.jpg)
+
+    ```java
+    // AbstractFactory.java
+
+    package cn.edu.scau.cmi.zhengwanxing.abstractFactory.factory;
+
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.CarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.DriverBodyInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.HumanInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.MultiAccident;
+
+    public abstract class AbstractFactory {
+      public static AbstractFactory getFactory(String brand){
+        switch(brand){
+        case "PICC":
+          return new PICCFactory();
+        case "PingAn":
+          return new PingAnFactory();
+        }
+        return null;
+      }
+      
+      public abstract CarDamage createCarDamage();
+      public abstract DriverBodyInjury createDriverBodyInjury();
+      public abstract HumanInjury createHumanInjury();
+      public abstract MultiAccident createMutiAccident();
+    }
+
+    // PICCFactory.java
+
+    package cn.edu.scau.cmi.zhengwanxing.abstractFactory.factory;
+
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domain.PICCCarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domain.PICCDriverBodyInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domain.PICCHumanInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domain.PICCMultiAccident;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.CarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.DriverBodyInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.HumanInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.MultiAccident;
+
+    public class PICCFactory extends AbstractFactory{
+
+      @Override
+      public CarDamage createCarDamage() {
+        // TODO Auto-generated method stub
+        return new PICCCarDamage();
+      }
+
+      @Override
+      public DriverBodyInjury createDriverBodyInjury() {
+        // TODO Auto-generated method stub
+        return new PICCDriverBodyInjury();
+      }
+
+      @Override
+      public HumanInjury createHumanInjury() {
+        // TODO Auto-generated method stub
+        return new PICCHumanInjury();
+      }
+
+      @Override
+      public MultiAccident createMutiAccident() {
+        // TODO Auto-generated method stub
+        return new PICCMultiAccident();
+      }
+      
+    }
+
+
+    // PICC.java
+
+    package cn.edu.scau.cmi.zhengwanxing.abstractFactory.damainInterface;
+
+    public interface PICC {
+      String brand="中国人寿保险";
+    }
+
+    // CarDamage.java
+
+    package cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass;
+
+    public abstract class CarDamage extends Insurance{
+      public final String name="汽车损坏";
+
+    }
+
+    // PICCCarDamage.java
+
+    package cn.edu.scau.cmi.zhengwanxing.abstractFactory.domain;
+
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.damainInterface.PICC;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.CarDamage;
+
+    public class PICCCarDamage extends CarDamage implements PICC{
+
+      @Override
+      public void damn() {
+        // TODO Auto-generated method stub
+        System.out.println("这是中国人寿保险汽车损坏");
+        System.out.println(super.name+PICC.brand);
+      }
+      
+
+    }
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.CarDamage;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.domainAbstractClass.DriverBodyInjury;
+    import cn.edu.scau.cmi.zhengwanxing.abstractFactory.factory.AbstractFactory;
+
+    public class AbstractFactoryClient {
+
+      public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        
+        AbstractFactory brandProducer = AbstractFactory.getFactory("PICC");
+        
+        CarDamage product = brandProducer.createCarDamage();
+        DriverBodyInjury product_1 = brandProducer.createDriverBodyInjury();
+        product.damn();
+        product_1.damn();
+      }
+
+    }
+
+    ```
   - 安全组合模式
   - 一致性组合模式
   - 类适配器模式
