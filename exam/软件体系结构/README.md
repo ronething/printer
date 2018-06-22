@@ -77,10 +77,132 @@
 
   - 注：以下 UML 图为平时实验所画，不一定对（以课本为主）。
 
-  - 单例模式
+  - 单例模式（课本P37）
 
-    
+    单例模式是指确保一个类仅有一个唯一的实例，并且提供一个全局的访问点。构造方法要声明为 `private` 类型。`getInstance`方法必须为静态方法，否则客户程序无法调用该方法。
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0aly1fsjw6yh93sj208304oq2v.jpg)
+
+
+    ```java
+    // President.java
+
+    package cn.edu.scau.cmi.zhengwanxing.singleton;
+
+    public class President {
+      
+      private static President instance;
+      
+      private String name;
+      
+      private President(String name){
+        this.name = name;
+      }
+      
+      public static President getInstance(String name){
+        if(instance==null && !name.equals(null)){
+          instance = new President(name);
+        }
+        return instance;
+      }
+
+    }
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.singleton.President;
+
+    public class SingletonClient {
+      
+      public static void main(String[] args){
+        System.out.println(President.getInstance("毛泽东"));
+        System.out.println(President.getInstance("习近平"));
+      }
+    }
+
+    ```
+    ```
+    // 输出
+
+    cn.edu.scau.cmi.zhengwanxing.singleton.President@15db9742
+    cn.edu.scau.cmi.zhengwanxing.singleton.President@15db9742
+    //返回结果一样
+
+    ```
   - 多例模式
+
+    使用单例模式的思想实现多例模式，确保系统中某个类的对象只能存在有限个。（添加计数器）
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjwb1vj4zj206r03ea9x.jpg)
+
+    ```java
+    // Marshal.java
+
+    package cn.edu.scau.cmi.zhengwanxing.multiton;
+
+    public class Marshal {
+      
+      private static Marshal instance;
+      private static int count = 0;
+      
+      private Marshal(){
+        
+      }
+      
+      public static Marshal getInstance(){
+        if(count<10){
+          instance = new Marshal();
+          count++;
+        }
+        return instance;
+      }
+
+    }
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.multiton.Marshal;
+
+    public class MultitonClient {
+
+      public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance());
+        //上面已经达到10个上限
+        System.out.println(Marshal.getInstance());
+      }
+
+    }
+    ```
+    ```
+    // 输出
+
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@15db9742
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@6d06d69c
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@7852e922
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@4e25154f
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@70dea4e
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@5c647e05
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@33909752
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@55f96302
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@3d4eac69
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@42a57993 //已到10个  最后一个实例 42a57993
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@42a57993
+
+    ```
   - 简单工厂方法模式（课本P10）
 
     ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjbpzguzoj20er08kwel.jpg)
@@ -366,16 +488,473 @@
     }
 
     ```
-  - 安全组合模式
-  - 一致性组合模式
-  - 类适配器模式
+  - 安全组合模式（课本P61）
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0aly1fsjwkmkjrzj20fp06wt8u.jpg)
+
+    ```java
+    // Component.java
+
+    package cn.edu.scau.cmi.zhengwanxing.composite.safe;
+
+    public interface Component {
+      public String doSomething();
+    }
+
+    // Composite.java
+
+    package cn.edu.scau.cmi.zhengwanxing.composite.safe;
+
+    import java.util.ArrayList;
+
+    public class Composite implements Component {
+      
+      private ArrayList<Component> leaflist;
+      private String name;
+
+      public Composite(String name) {
+        this.name = name;
+        leaflist = new ArrayList<Component>();
+      }
+      
+      public void add(Component l){
+        if(l!=null){
+          leaflist.add(l);
+        }
+      }
+      
+      public void remove(Component l){
+        leaflist.remove(l);
+      }
+
+      public ArrayList<Component> getLeaflist() {
+        return leaflist;
+      }
+      
+      @Override
+      public String doSomething() {
+        // TODO Auto-generated method stub
+        int len = leaflist.size();
+        String something="";
+        for(int i=0;i<len;i++){
+          Component com = leaflist.get(i);
+          something+=com.doSomething()+"\n";
+        }
+        return something;
+      }
+
+    }
+
+    // Leaf.java
+
+    package cn.edu.scau.cmi.zhengwanxing.composite.safe;
+
+    public class Leaf implements Component {
+      
+      private String name;
+      
+      public Leaf(String name) {
+        this.name = name;
+      }
+      
+      @Override
+      public String doSomething() {
+        // TODO Auto-generated method stub
+        return name;
+      }
+
+    }
+
+    // compositesafeClient.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.composite.safe.Composite;
+    import cn.edu.scau.cmi.zhengwanxing.composite.safe.Leaf;
+
+    public class compositesafeClient {
+
+      public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Leaf leaf = new Leaf("安全模式个人1");
+        Composite com = new Composite("安全模式组织1");
+        com.add(leaf);
+        Leaf leaf1 = new Leaf("安全模式个人2");
+        com.add(leaf1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+        Composite com1 = new Composite("安全模式组织2");
+        Leaf leaf2 = new Leaf("安全模式个人3");
+        com1.add(leaf2);
+        com.add(com1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+        com.remove(leaf1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+      }
+
+    }
+
+    ```
+
+    ```
+    //输出
+
+    com组织的人员：
+    安全模式个人1
+    安全模式个人2
+
+    com组织的人员：
+    安全模式个人1
+    安全模式个人2
+    安全模式个人3
+
+
+    com组织的人员：
+    安全模式个人1
+    安全模式个人3
+    ```
+  - 一致性组合模式（也称为透明组合模式 课本P61）
+
+    好处：所有的构件类都有相同的接口。
+    缺点：不够安全。
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjxwt2zdtj20gk08ggm1.jpg)
+
+    ```java
+    // Component.java
+
+    package cn.edu.scau.cmi.zhengwanxing.composite.transparent;
+
+    public interface Component {
+      String doSomething();
+      void add(Component l);
+      void remove(Component l);
+    }
+
+    // Composite.java
+    package cn.edu.scau.cmi.zhengwanxing.composite.transparent;
+
+    import java.util.ArrayList;
+
+    public class Composite implements Component {
+      
+      private ArrayList<Component> leaflist;
+      private String name;
+
+      public Composite(String group) {
+        this.name = name;
+        leaflist = new ArrayList<Component>();
+      }
+      
+      public void add(Component l){
+        if(l!=null){
+          leaflist.add(l);
+        }
+      }
+      
+      public void remove(Component l){
+        leaflist.remove(l);
+      }
+
+      public ArrayList<Component> getLeaflist() {
+        return leaflist;
+      }
+      
+      @Override
+      public String doSomething() {
+        // TODO Auto-generated method stub
+        int len = leaflist.size();
+        String something="";
+        for(int i=0;i<len;i++){
+          Component com = leaflist.get(i);
+          something+=com.doSomething()+"\n";
+        }
+        return something;
+      }
+      
+    }
+
+    // Leaf.java
+
+    package cn.edu.scau.cmi.zhengwanxing.composite.transparent;
+
+    public class Leaf implements Component {
+      
+      private String name;
+      
+      String ERRMSG1 = "The add operation in class Leaf is not supported";
+      String ERRMSG2 = "The remove operation in class Leaf is not supported";
+      
+      public Leaf(String name) {
+        this.name = name;
+      }
+      
+      @Override
+      public String doSomething() {
+        // TODO Auto-generated method stub
+        return name;
+      }
+
+      @Override
+      public void add(Component l) {
+        // TODO Auto-generated method stub
+        System.out.println(ERRMSG1);
+      }
+
+      @Override
+      public void remove(Component l) {
+        // TODO Auto-generated method stub
+        System.out.println(ERRMSG2);
+      }
+
+    }
+
+    // compositetransparentClient.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.composite.transparent.Composite;
+    import cn.edu.scau.cmi.zhengwanxing.composite.transparent.Leaf;
+
+    public class compositetransparentClient {
+      
+      public static void main(String[] args) {
+        Leaf leaf = new Leaf("透明模式个人1");
+        Composite com = new Composite("透明模式组织1");
+        com.add(leaf);
+        Leaf leaf1 = new Leaf("透明模式个人2");
+        com.add(leaf1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+        Composite com1 = new Composite("透明模式组织2");
+        Leaf leaf2 = new Leaf("透明模式个人3");
+        com1.add(leaf2);
+        com.add(com1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+        com.remove(leaf1);
+        System.out.println("com组织的人员：");
+        System.out.println(com.doSomething());
+        //尝试个人加入个人
+        leaf2.add(leaf1);
+        //尝试个人移除个人
+        leaf2.remove(leaf1);
+      }
+    }
+
+    ```
+
+    ```
+    //输出
+
+    com组织的人员：
+    透明模式个人1
+    透明模式个人2
+
+    com组织的人员：
+    透明模式个人1
+    透明模式个人2
+    透明模式个人3
+
+    com组织的人员：
+    透明模式个人1
+    透明模式个人3
+
+    The add operation in class Leaf is not supported
+    The remove operation in class Leaf is not supported
+
+    ```
+
+  - 类适配器模式（课本P68）
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0aly1fsjyev6mg2j20je0eat96.jpg)
+
+    Target: 即所期望的 Java 接口
+
+    Adaptee: 被继承的 Java 类
+
+    Adapter: 将 Adaptee 类转化到增加了新功能的 Target 接口
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0aly1fsjyhn4mwzj20fp08nmxe.jpg)
+
+    ```java
+    // Target.java
+
+    package cn.edu.scau.cmi.zhengwanxing.adapter;
+
+    /**
+    * @author Administrator
+    * 人可以扮演多个角色，学生，孩子，worker。
+    */
+    public interface Target {
+      
+      void kid();
+      void student();
+      void worker();
+    }
+
+    // Adaptee.java
+
+    package cn.edu.scau.cmi.zhengwanxing.adapter;
+
+    /**
+    * @author Administrator
+    * 人现在只能扮演孩子。
+    */
+    public class Adaptee {
+      
+      public void kid(){
+        System.out.println("Now I can be a kid");
+      }
+    }
+
+    // AdapterOfClass.java
+
+    package cn.edu.scau.cmi.zhengwanxing.adapter;
+
+    public class AdapterOfClass extends Adaptee implements Target{
+
+      @Override
+      public void student() {
+        // TODO Auto-generated method stub
+        System.out.println("Now I can be a student");
+      }
+
+      @Override
+      public void worker() {
+        // TODO Auto-generated method stub
+        System.out.println("Now I can be a worker");
+      }
+
+    }
+
+    // client.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.adapter.AdapterOfClass;
+    import cn.edu.scau.cmi.zhengwanxing.adapter.Target;
+
+    public class AdapterClient {
+      public static void main(String[] args){
+        
+        //以下为类适配器
+        System.out.println("AdapterOfClass is Here");
+        Target per = new AdapterOfClass();
+        
+        per.kid();
+        per.student();
+        per.worker();
+
+      }
+
+    }
+
+    ```
+
+    > `Target per = new AdapterOfClass();` 注意对象的类型为接口`Target`，这样做的好处是有利于动态绑定。
+
+    ```
+    //输出
+
+    AdapterOfClass is Here
+    Now I can be a kid
+    Now I can be a student
+    Now I can be a worker
+
+    ```
+
+  - 对象适配器模式
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0aly1fsjz8m4warj20jc0dgdg9.jpg)
+
+    > 注意对象适配器对被适配器对象采用的是调用。
+
+    ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjz6c0c84j20gf06ldfz.jpg)
+
+    ```java
+    // Target.java Adaptee.java
+    // 与类适配器一样
+
+    // AdapterOfObject.java
+
+    package cn.edu.scau.cmi.zhengwanxing.adapter;
+
+    public class AdapterOfObject implements Target{
+      
+      private Adaptee pre;
+      
+      public AdapterOfObject(Adaptee pre){
+        this.pre = pre;
+      }
+      
+      @Override
+      public void kid() {
+        // TODO Auto-generated method stub
+        this.pre.kid();
+      }
+
+      @Override
+      public void student() {
+        // TODO Auto-generated method stub
+        System.out.println("Now I can be a student(AdapterOfObejct)");
+      }
+
+      @Override
+      public void worker() {
+        // TODO Auto-generated method stub
+        System.out.println("Now I can be a worker(AdapterOfObejct)");
+      }
+
+    }
+
+    // AdapterClient.java
+
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import cn.edu.scau.cmi.zhengwanxing.adapter.Adaptee;
+    import cn.edu.scau.cmi.zhengwanxing.adapter.AdapterOfObject;
+    import cn.edu.scau.cmi.zhengwanxing.adapter.Target;
+
+    public class AdapterClient {
+      public static void main(String[] args){
+        
+        //以下为对象适配器
+        System.out.println("AdapterOfObject is Here");
+        Target pre = new AdapterOfObject(new Adaptee());
+        pre.kid();
+        pre.student();
+        pre.worker();
+      }
+
+    }
+
+    ```
+
+    ```
+    //输出
+
+    AdapterOfObject is Here
+    Now I can be a kid
+    Now I can be a student(AdapterOfObejct)
+    Now I can be a worker(AdapterOfObejct)
+
+    ```
+
+    
   - ORM模式
     
     Hibernate对象关系映射
+
   - IOC模式
   
     Spring的控制反转
+
   - Spring 框架基本原理和实验使用
+
+  
   - Hibernate 框架基本原理和使用
 
 ---
@@ -383,7 +962,10 @@
 ## 复习题
 
 - [简要说明接口编程的好处](https://blog.csdn.net/u012402177/article/details/70145507)
-  - ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsfgjry79vj20hn05idg3.jpg)
+  
+  - 高内聚低耦合
+
+  - 设计模式之开闭原则
 
 - 怎样保证在一个OO的系统中，只能创建指定数量的对象
 
@@ -426,7 +1008,14 @@
 - 对象型适配器和类适配器的区别是什么？（课本P72）
 
   https://blog.csdn.net/scychina/article/details/12908355
+
   类适配器模式与对象适配器模式在形式上的区别是，类适配器模式对被适配器对象采用了继承，而对象适配器对被适配对象采用的则是调用。
 
 - Spring框架是一个轻量级的应用框架，在实际的项目中有很重要的用途，请说明这个框架中最重要的思想是什么？这种思想在软件开发中有哪些好处？
+
+  核心思想是控制反转（IOC），依赖注入和面向切面编程。
+  最重要的思想是控制反转（IOC）。
+
+  好处：http://www.cnblogs.com/sunada2005/p/3581391.html
+
   
