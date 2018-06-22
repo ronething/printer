@@ -134,6 +134,8 @@
     ```
   - 多例模式
 
+    - 泰星提醒：增加检测对象是否重复。用 List
+
     使用单例模式的思想实现多例模式，确保系统中某个类的对象只能存在有限个。（添加计数器）
 
     ![](https://ws1.sinaimg.cn/large/bdc70b0agy1fsjwb1vj4zj206r03ea9x.jpg)
@@ -143,24 +145,37 @@
 
     package cn.edu.scau.cmi.zhengwanxing.multiton;
 
+    import java.util.ArrayList;
+    import java.util.List;
+
     public class Marshal {
       
       private static Marshal instance;
       private static int count = 0;
+      private static List<Marshal> l = new ArrayList<Marshal>();
+      private String name;
       
-      private Marshal(){
-        
+      private Marshal(String name){
+        this.name = name;
       }
       
-      public static Marshal getInstance(){
-        if(count<10){
-          instance = new Marshal();
-          count++;
+      public static Marshal getInstance(String name){
+        for(Marshal m:l){
+          if(m.name.equals(name)){
+            return m;
+          }
         }
-        return instance;
+        if(count<10){
+          instance = new Marshal(name);
+          l.add(instance);
+          count++;
+          return instance;
+        }
+        return null;
       }
 
     }
+
 
     // client.java
 
@@ -172,21 +187,23 @@
 
       public static void main(String[] args) {
         // TODO Auto-generated method stub
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
-        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance("1"));
+        System.out.println(Marshal.getInstance("2"));
+        System.out.println(Marshal.getInstance("3"));
+        System.out.println(Marshal.getInstance("4"));
+        System.out.println(Marshal.getInstance("5"));
+        System.out.println(Marshal.getInstance("6"));
+        System.out.println(Marshal.getInstance("7"));
+        System.out.println(Marshal.getInstance("8"));
+        System.out.println(Marshal.getInstance("9"));
+        System.out.println(Marshal.getInstance("9"));
+        System.out.println(Marshal.getInstance("10"));
         //上面已经达到10个上限
-        System.out.println(Marshal.getInstance());
+        System.out.println(Marshal.getInstance("11"));
       }
 
     }
+
     ```
     ```
     // 输出
@@ -200,8 +217,9 @@
     cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@33909752
     cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@55f96302
     cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@3d4eac69
-    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@42a57993 //已到10个  最后一个实例 42a57993
+    cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@3d4eac69
     cn.edu.scau.cmi.zhengwanxing.multiton.Marshal@42a57993
+    null
 
     ```
   - 简单工厂方法模式（课本P10）
