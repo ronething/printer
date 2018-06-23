@@ -79,7 +79,7 @@ A fold     B join    C tr     D read
 
 A  1   B  2   C  3   D  4
 
-> 主动和被动。但是网上说还有另一种单端口。emm
+> ASCII 和 Binary
 
 22、使用at规划进程任务时，为了删除已经规划好的工作任务，我们可以使用______工具。  A  atq   B  atrm 　C  rm 　D  del
 
@@ -112,7 +112,7 @@ A  /var/log/syslog      B  /var/log/start
 
 A  /etc/mtab  B  /etc/fastboot  C  /etc/fstab   D  /etc/inetd.conf
 
-28、有如下的命令说明：mycommand \[-abcd][filename…],"…"表示______ (A)
+28、有如下的命令说明：mycommand \[-abcd][filename…],"…"表示______ (B)
 A 只有一个参数      B 可以有一个以上的参数 
 
 C 该参数可以省略    D 该参数位置可变
@@ -279,3 +279,27 @@ else
 	echo "FTP STOP FAILED" >> /tmp/ftplog
 ```
 
+---
+
+```
+设计一个Shell程序，在/userdata目录下建立50个目录，即user1～user50，并设置每个目录的权限，其中其他用户的权限为：读；文件所有者的权限为：读、写、执行；文件所有者所在组的权限为：读、执行。
+```
+
+> test.sh
+```sh
+#!/bin/bash
+flag=49
+while [ "$flag" -ge 0 ]
+do
+    echo "创建目录:user$((50-$flag))"
+    mkdir -m 754 /userdata/user$((50-$flag))
+    flag=$(($flag-1))
+done
+exit 0
+```
+
+> 效果图：
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fslo2hz87uj20jj0ewgmc.jpg)
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fslo45dt00j20ni082mxm.jpg)
