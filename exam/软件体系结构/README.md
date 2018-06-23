@@ -999,6 +999,33 @@
       </bean>
     </beans>
     ```
+
+    > springclient.java
+
+    ```java
+    package cn.edu.scau.cmi.zhengwanxing.client;
+
+    import org.springframework.context.ApplicationContext;
+    import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+    import cn.edu.scau.cmi.zhengwanxing.spring.domain.Student;
+
+    public class SpringClient {
+      
+      public SpringClient(){
+        
+      }
+      
+      public static void main(String[] args) {
+        ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
+        Student student=(Student) ac.getBean("zhengwanxing");
+        System.out.println(student.getTutor().getName());
+        // 销毁ApplicationContext((ClassPathXmlApplicationContext) ac).close();
+      }
+
+    }
+
+    ```
   - Hibernate 框架基本原理和使用
 
     > hibernate.cfg.xml
