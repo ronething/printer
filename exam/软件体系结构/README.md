@@ -357,12 +357,13 @@
           String type;
           Scanner input=new Scanner(System.in);
           type=input.nextLine();
-          Insurance ins=null;
+          Factory ff = null;
+          Insurance ins = null;
           switch(type){
-            case "司机受伤":{DriverDamageFactory dd=new DriverDamageFactory();ins=dd.createInsurance();break;}
-            case "汽车损坏":{CarDamageFactory cf=new CarDamageFactory();ins=cf.createInsurance();break;}
-            case "人员伤亡":{PersonDamageFactory pf=new PersonDamageFactory();ins=pf.createInsurance();break;}
-            case "多种事故":{MultiAccidentFactory mf=new MultiAccidentFactory();ins=mf.createInsurance();break;}
+            case "司机受伤":{ff=new DriverDamageFactory();ins=ff.createInsurance();break;}
+            case "汽车损坏":{ff=new CarDamageFactory();ins=ff.createInsurance();break;}
+            case "人员伤亡":{ff=new PersonDamageFactory();ins=ff.createInsurance();break;}
+            case "多种事故":{ff=new MultiAccidentFactory();ins=ff.createInsurance();break;}
           }
           System.out.println(ins.getMessage());
           input.close();
