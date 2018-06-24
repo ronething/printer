@@ -380,9 +380,9 @@ exit 0
 my_app: my_app.o greeting.o
 	gcc my_app.o greeting.o -o my_app
 my_app.o: my_app.c
-	gcc -c my_app.c -o my_app.o -Ifunctions
+	gcc -c my_app.c -Ifunctions
 greeting.o: functions/greeting.c
-	gcc -c functions/greeting.c -o greeting.o -Ifunctions
+	gcc -c functions/greeting.c
 ```
 
 ```
@@ -737,7 +737,7 @@ C 普通用户之间的私有资源是可以相互隔离的
 D 普通用户只能访问自己的Home目录 
 
 6、假设执行cat /etc/passwd命令后，发现以下记录信息：
- games:x:12:100:games:/usr/games:/sbin/nologin，下列说法错误的是 __A__。
+ `games:x:12:100:games:/usr/games:/sbin/nologin`，下列说法错误的是 __A__。
 
 A 该用户的用户ID为100(gid才是100) B 该用户的home目录为/usr/games
 
