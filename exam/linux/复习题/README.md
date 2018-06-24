@@ -1,5 +1,121 @@
 # linux模拟试题
 
+---
+
+简答题知识点
+
+卓乔贡献：
+
+1、画出Linux操作系统的体系结构图，并说明每个模块的功能与联系。
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsm9e78b87j20lx0frwfd.jpg)
+
+```
+Linux操作系统的结构可以从两个层次上来划分。最上面的是用户（或应用程序空间），这是用户应用程序执行的地方。用户空间之下是内核空间，Linux内核正是位于这里。
+1)	Linux 内核可以进一步划分成 3 层。
+2)	最上面是系统调用接口，它实现了一些基本的功能，例如 read 和 write。
+3)	系统调用接口之下是内核代码，可以更精确地定义为独立于体系结构的内核代码。这些代码是 Linux 所支持的所有处理器体系结构所通用的。
+4)	在这些代码之下是依赖于体系结构的代码，构成了通常称为 BSP（Board Support Package）的部分。这些代码用作给定体系结构的处理器和特定于平台的代码。
+```
+
+2、画出VFS（虚拟文件系统）的结构图，并说明VFS的功能与作用。
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsmr709mfxj20dy09mq4p.jpg)
+
+```
+VFS功能：Linux系统可以支持多种文件系统，为此，必须使用一种统一的接口，这就是虚拟文件系统(VFS)。通过VFS将不同文件系统的实现细节隐藏起来，因而从外部看上去，所有的文件系统都是一样的。
+```
+
+3、说明软链接和硬链接的联系与区别。
+
+```
+联系：
+1. 对软链接或硬链接的内容进行修改，会对原文件有效
+2. 删除软链接或硬链接本身，不会对原文件有影响
+
+区别：
+1) 硬连接：给文件一个副本（别名），同时建立两者之间的连接关系，修改其中一个，与其连接的文件同时被修改，如果删除其中一个，其余的文件不受影响。磁盘上只有一份数据。创建硬链接会增加文件的链接数。当链接数变成0时，这个文件才会被真正删掉。
+2) 软连接：只是一个快捷方式，是一个独立的文件，与原文件具有不同的inode节点。删除了原文件，这个连接文件就没用了。
+```
+
+4、画出X Window系统基本结构图，并说明每个组成部分的功能与作用。
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsmr8bd24tj20dy09075d.jpg)
+
+```
+整个X Window由三个部分组成：
+1)X Server：是控制输出及输入设备并维护相关资源的程序，它接收输入设备的信息，并将其传给X Client，而将X Client传来的信息输出到屏幕上。
+2)X Client：是应用程序的核心部分，它与硬件无关，每个应用程序就是一个X Client。X Client可以是终端仿真器（Xterm）或图形界面程序，它不直接对显示器绘制或者操作图形，而是与X Server通信，由X Server控制显示。
+3)X protocol：X Client与X Server之间的通信协议。
+```
+
+5、以图解方式解释stand-alone工作模式和xinetd工作模式，并说明选择不同工作模式的原则。
+
+```
+1）运行独立的守护进程工作方式称作：stand－alone。它是Unix传统的C/S模式的访问模式。服务器监听（Listen）在一个特点的端口上等待客户端的联机。如果客户端产生一个连接请求，守护进程就创建（Fork）一个子服务器响应这个连接，而主服务器继续监听。以保持多个子服务器池等待下一个客户端请求。
+```
+
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9m0nnkivj20e4057wen.jpg)
+
+```
+2）从守护进程的概念可以看出，对于系统所要通过的每一种服务，都必须运行一个监听某个端口连接所发生的守护进程，这通常意味着资源浪费。
+为了解决这个问题，Linux引进了“网络守护进程服务程序”的概念。Redhat Linux 9.0使用的网络守护进程是xinted（eXtended InterNET daemon）。和stand－alone模式相比xinted模式也称 Internet Super－Server（超级服务器）。
+xinetd能够同时监听多个指定的端口，在接受用户请求时，他能够根据用户请求的端口不同，启动不同的网络服务进程来处理这些用户请求。
+可以把xinetd看做一个管理启动服务的管理服务器，它决定把一个客户请求交给那个程序处理，然后启动相应的守护进程。 
+```
+
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9m0nnkivj20e4057wen.jpg)
+
+> 两种模式如何做出选择：
+
+```
+xinetd和stand-alone工作模式相比，系统不想要每一个网路服务进程都监听器服务端口，运行单个xinetd就可以同时监听所有服务端口，这样就降低了系统开销，保护了系统资源。但是对于访问量大、经常出现并发访问的情况，xinetd则要频繁启动响应的网络服务进程，反而会导致系统性能下降。所以访问量少、并发少的情况下选择xinetd工作模式，访问量大、并发多的情况下选择stand-alone工作模式
+```
+
+6、Linux系统的特点是什么？
+
+```
+开放性、多用户、多任务、良好的用户界面、设备独立性、提供了丰富的网络功能、可靠的系统安全、良好的可移植性。
+```
+
+7、解释linux终端概念。
+
+```
+1)Linux终端也称为虚拟控制台 .一台计算机的输入输出设备就是一个物理的控制台 .
+2)如果在一台计算机上用软件的方法实现了多个互不干扰独立工作的控制台界面，就是实现了多个虚拟控制台。 
+3)Linux终端的工作方式是字符命令行方式，用户通过键盘输入命令进行操作，可以通过Linux终端对系统进行控制。 
+```
+
+8、Linux文件类型,各类型说明。
+
+```
+普通文件：普通文件包括文本文件、二进制可执行文件、shell脚本文件以及各种类型的数据文件，如图像文件、声音文件等。
+d:目录文件：目录文件是一种特殊的文件，它们包含文件名和子目录名，以及查找这些文件和子目录所必需的信息。
+l:链接文件：普通的链接实际上不是文件，它们仅是指向同一索引节点的目录条目，是一个索引节点表。
+设备文件：Linux系统把每一个输入/输出设备都看成一个文件，与普通文件一样处理，这样可以使文件与设备的操作尽可能统一。其中可以读写单个字符的是c:设备字符设备（如键盘）；不能访问单个字符，而必须整块读写的设备称作b:块设备（如磁盘）。
+s:Socket文件
+p:管道文件
+```
+
+9、Linux系统运行级别（课本P18）
+
+```
+0：关机级别
+1：单用户
+2：多用户，无NFS，字符模式，无网络功能
+3：多用户，NFS，字符模式，有网络功能。
+4：用户自定义级别
+5：图形界面模式（redhat常用运行级别）
+6：重启级别
+
+更改系统运行级别的方法：
+1、root用户 `init n `或者`telinit n`,n为级别号
+2、在字符终端界面上执行命令`startx`启动图形化环境。
+3、更改/etc/inittab可以更改默认级别。
+```
+
+---
+
 - 选择题
 
 2、dns域名系统主要负责主机名和____之间的解析。 (A)
@@ -102,9 +218,12 @@ D 判断变量是否有值：[ -f “$FRUIT” ]
 > -z string 如果字符串为空则结果为真
 
 24、内核引导信息在系统启动完成后，存放在： （C）
+
 A  /var/log/syslog      B  /var/log/start 
 
  C  /var/log/messages    D  /var/log/statues
+
+ > /var/log/messages 包含整体系统信息，其中也包含系统启动期间的日志。此外，mail、cron、daemon、kern和auth等内容也记录在/var/log/messages 日志中。
 
 26、系统 管理 常用的二进制文件，一般放置在 __A__ 目录下。
 
@@ -119,8 +238,6 @@ cfdisk、dhcpcd、dump、e2fsck、fdisk、halt、ifconfig、ifup、 ifdown、ini
 主要放置网路管理的必备程序，例如:
 dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump等 
 ```
-
-> /var/log/messages 包含整体系统信息，其中也包含系统启动期间的日志。此外，mail、cron、daemon、kern和auth等内容也记录在/var/log/messages 日志中。
 
 27、通过修改文件______，可以设定开机时候自动安装的文件系统。  （C）
 
@@ -456,9 +573,9 @@ my_app.o:my_app.c functions\greeting.h
     ${CC} ${CFLAGS} -c my_app.c -Ifunctions
 ```
 
-> emm… 题目程序应该写错了。
+> emm… ~~题目程序应该写错了。~~ 题目没错。。是我错了。以为类似`${CC} ${CFLAGS} -c test\thank.c`是错的，实际上他只是没有指定.o的文件名而已。
 
-![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsmasprcudj20eb09tglt.jpg)
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsmrmbyyo6j20cz08nabt.jpg)
 
 
 ```
@@ -498,6 +615,189 @@ tar -zxvf Destkop.tar.gz
 
 ```sh
 30 21 * * 5 su - oracle -c "/home/oracle/exportdata.sh"
-15 01 * * 5 su - oracle -c "tar -cvf datafile.tar /oracle/backup/*.dmp"
+# 加上大约3小时45分 应该是星期 六 的01:15
+15 01 * * 6 su - oracle -c "tar -cvf /oracle/backup/datafile.tar /oracle/backup/*.dmp"
 0 22 * * 4 su - oracle -c "rm -f /oracle/backup/datafile.tar"
 ```
+
+---
+
+18、下面      不属于Linux操作系统。(A)
+
+A  elive    B  redflag    C  AIX    D  Caldera
+
+20、在 bash 中, 在一条命令后加入 "1>&2" 意味着：__C__
+
+A  标准错误输出重定向到标准输入
+
+B  标准输入重定向到标准错误输出
+
+C  标准输出重定向到标准错误输出
+
+D  标准输出重定向到标准输入
+
+> 0代表标准输入，1代表标准输出，2代表标准错误输出。
+
+26、下列不是Linux系统进程类型的是 __D__
+
+A 交互进程     B 批处理进程     C 守护进程     D 就绪进程
+
+30、以下关于GTK+的说法错误的是 __B__。
+
+A  GTK+有自己的事件和事件监听器系统，叫做信号和回调函数
+
+B  “delete-event”是所有构件都继承的信号
+
+C  连接回调函数没有任何限制，可以将多个信号连接到一个回调函数
+
+D  所有窗口部件创建函数都返回一个GtkWidget类型
+
+> C是对的。详情百度
+
+28、以下关于shell的说法错误的是 __C__。（猜的）
+
+A  不同的shell解释器使用不同的shell命令语法
+
+B  shell程序解释执行，不生成可以执行的二进制文件
+
+C  适合用来完成时间紧迫型和处理器忙碌型的任务
+
+D  可以帮助用户完成特定的任务，提高使用、维护系统的效率
+
+```
+1、现有一C程序文件为hello.c，用gcc编译该文件，请根据上述要求写出各条编译指令。
+（1）生成对应的预处理后的C源程序
+gcc -E hello.c -o hello.i
+（2）生成预处理后的汇编程序
+gcc -S hello.c
+（3）生成目标文件
+gcc -c hello.c 
+（4）生成带调试信息的可执行文件
+gcc hello.c
+（5）hello.c有一头文件hello1.h放在hello.c所在目录的子目录dir1下，另一头文件hello2.h放在hello.c所在目录的子目录dir2下，生成可执行文件
+gcc hello.c -o hello -Idi1 -Idir2
+```
+
+```
+3、使用bash编写一脚本，脚本中必须采用函数的形式计算1+2+3+4+…+N的值，N为该脚本的参数，若没有参数则提示错误，若运行过程有错，需把错误信息丢弃。
+```
+
+```sh
+#!/bin/bash
+
+demo(){
+    if [ -z $1 ]
+    then
+	echo "error"
+	exit 1
+    else
+	sum=
+	n=$1
+	while [ $n -ge 1 ]
+	do
+	    sum=$((sum+n))
+	    n=$((n-1))
+	done
+    fi
+    echo "$sum"
+     
+}
+demo $1
+```
+
+```sh
+# 2、解释以下脚本各行的内容，并说明整个函数的功能是什么
+1. change(){ # 定义一个名为change的函数
+2.    sure='y' # 声明并初始化变量sure的值为’y’
+3.    while [ $sure = 'y' ] # 循环判断，当变量sure等于’y’时执行循环体
+4.    do # while循环开始
+5.        echo 'input direction name' # 输出提示信息
+6.        read dirname  # 读取用户输入并赋值给变量dirname
+7.        for d in $dirname/*.doc # 循环 遍历变量dirname目录下的所有以doc为后缀的文件
+8.        do    # 循环开始
+9.			 test -f $d # 判断循环变量d是否是一个文件
+10.			 if [ $? -eq 0 ];then # 判断上一条命令的结果是否等于0
+11.					mv $d "${d%doc}txt" # 如果上一条命令的结果等于0，把变量d所存储的文件的后缀由doc改为txt
+12.			 fi # 分支判断结束
+13.        done # 循环结束
+14.        echo 'Do you want to continue?' # 输出提示信息，询问用户是否继续
+15.        read sure # 获取用户输入，并赋值给sure变量
+16.   done  # 循环结束
+17.}    #函数结束
+```
+
+5、下列说法，不正确的是 __D__。
+
+A 根用户具有对整个系统的控制权	
+
+B 特殊用户的账号也可以登录
+
+C 普通用户之间的私有资源是可以相互隔离的
+
+D 普通用户只能访问自己的Home目录 
+
+6、假设执行cat /etc/passwd命令后，发现以下记录信息：
+ games:x:12:100:games:/usr/games:/sbin/nologin，下列说法错误的是 __A__。
+
+A 该用户的用户ID为100(gid才是100) B 该用户的home目录为/usr/games
+
+C 该用户是一个特殊用户      D 该用户不能登录shell
+
+> 由此题可见，系统用户（UID100以下）也称为特殊用户？
+
+14、下面关于less和more的说法错误的是 __B__。
+
+A less和more都可以实现分页查看功能
+
+B 打开大型文档时，more命令的速度要快一点
+
+C less提供上下浏览的功能
+
+D more会把整个文档读入到内存中
+
+17、不能使vi显示行号的命令是 __B__。（课本P72）
+
+A :nu		B :set num		C :set nu		D :set number
+
+> :nu 可以取得光标所在行号
+
+18、在利用gdb进行调试过程中，如果需要单步执行，且不进入函数内部，应该使用 __A__。（课本P160）
+
+A next		B step		C run		D go
+
+> next 单步执行，且不进入函数内部
+setp 单步执行，且进入函数内部
+run 执行当前被调试的程序
+
+23、要删除已经设定的crontab内容，可以使用的命令是_____。
+
+A crontab -e		B crontab -r		C crontab -l		D deltab
+
+> A 编辑
+B 删除
+C 列出
+
+4、下列命令中，不能导致vi工作模式切换的是 __A__。
+
+A dd B I    C /   D O
+
+> dd 剪切行
+I 在当前行的开始处添加文本
+/ 进入末行模式
+O在当前行的上面新建一行
+
+8、普通用户可执行的关机命令是 __D__。（猜的）
+
+A shutdown		B halt		C init		D poweroff
+
+10、为了获取shell脚本调用时传入的参数个数，需要在shell脚本中使用 __A__。
+
+A $#		B $@		C $0		D $*
+
+15、下列命令中，能把光标移动到行尾的是_____。
+
+A $		B ^		C e		D b
+
+> ^ 移到当前行的行首
+b移到当前字的字首，如果已经是在字首，则移动到上个字的字首
+e移到当前字的字尾，如果已经是在字尾，则移动到下个字的字尾
