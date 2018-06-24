@@ -106,6 +106,20 @@ A  /var/log/syslog      B  /var/log/start
 
  C  /var/log/messages    D  /var/log/statues
 
+26、系统 管理 常用的二进制文件，一般放置在 __A__ 目录下。
+
+A  /sbin    B  /root   C  /usr/sbin   D  /boot
+
+```
+/sbin:
+主要放置系统管理的必备程序，例如:
+cfdisk、dhcpcd、dump、e2fsck、fdisk、halt、ifconfig、ifup、 ifdown、init、insmod、lilo、lsmod、mke2fs、modprobe、quotacheck、reboot、rmmod、 runlevel、shutdown等。
+
+/usr/sbin:
+主要放置网路管理的必备程序，例如:
+dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump等 
+```
+
 > /var/log/messages 包含整体系统信息，其中也包含系统启动期间的日志。此外，mail、cron、daemon、kern和auth等内容也记录在/var/log/messages 日志中。
 
 27、通过修改文件______，可以设定开机时候自动安装的文件系统。  （C）
@@ -113,6 +127,7 @@ A  /var/log/syslog      B  /var/log/start
 A  /etc/mtab  B  /etc/fastboot  C  /etc/fstab   D  /etc/inetd.conf
 
 28、有如下的命令说明：mycommand \[-abcd][filename…],"…"表示______ (B)
+
 A 只有一个参数      B 可以有一个以上的参数 
 
 C 该参数可以省略    D 该参数位置可变
@@ -122,22 +137,39 @@ C 该参数可以省略    D 该参数位置可变
 A  \$#    B  \$@    C  \$0   D  $!
 
 > $$ 
+
 > Shell本身的PID（ProcessID） 
+
 > $! 
+
 > Shell最后运行的后台Process的PID 
+
 > $? 
+
 > 最后运行的命令的结束代码（返回值） 
+
 > $- 
+
 > 使用Set命令设定的Flag一览 
+
 > $* 
+
 > 所有参数列表。如"\$*"用「"」括起来的情况、以"$1 $2 … $n"的形式输出所有参数。 
+
 > $@ 
+
 > 所有参数列表。如"\$@"用「"」括起来的情况、以"$1" "$2" … "$n" 的形式输出所有参数。 
+
 > $# 
+
 > 添加到Shell的参数个数 
+
 > $0 
+
 > Shell本身的文件名 
+
 > \$1～$n 
+
 > 添加到Shell的各参数值。$1是第1参数、$2是第2参数…。
 
 ---
@@ -193,7 +225,7 @@ xinetd能够同时监听多个指定的端口，在接受用户请求时，他�
 如果输入超过100的分数，则显示错误分数提示。
 ```
 
-```shell
+```sh
 #!/bin/bash
 if [ "$2" -lt 60 -a "$2" -ge 0 ]
 then
@@ -231,7 +263,7 @@ exit 0
 my_app: my_app.o greeting.o
 	gcc my_app.o greeting.o -o my_app
 my_app.o: my_app.c
-	gcc -c my_app.c -o greeting.c -Ifunctions
+	gcc -c my_app.c -o my_app.o -Ifunctions
 greeting.o: functions/greeting.c
 	gcc -c functions/greeting.c -o greeting.o -Ifunctions
 ```
@@ -281,6 +313,82 @@ else
 
 ---
 
+2、一个文件名字为rr.Z，可以用来解压缩的命令是 __D__。 
+
+A   tar    B   gzip   C  compress    D  uncompress
+
+```
+uncompress命令 用来解压缩由compress命令压缩后产生的“.Z”压缩包。
+compress -d 也可以解压缩
+
+语法
+uncompress(选项)(参数)
+选项
+-f：不提示用户，强制覆盖掉目标文件；
+-c：将结果送到标准输出，无文件被改变；
+-r：递归的操作方式。
+```
+
+9、不是shell具有的功能和特点的是 __C__。 
+
+A 管道   B 输入输出重定向   C 执行后台进程   D 处理程序命令 
+
+> 执行后台进程是内核的功能。（课本P9）
+
+14、下面   B   不属于Linux内核系统。
+
+A 内存管理    B IO管理    C 进程管理    D 设备驱动程序
+
+```
+linux内核实际上仅仅是一个资源管理器，包含以下几个组件：
+1、系统调用接口
+2、进程管理
+3、内存管理
+4、虚拟文件系统
+5、网络堆栈
+6、设备驱动程序
+7、依赖于体系结构的代码
+```
+
+19、内核自行启动(已经被载入内存，开始运行，并已初始化所有的设备驱动程序和数据结构等)之后，通过启动一个用户级程序 `init` 的方式，完成了自己的引导进程。在这个过程中 `init` 进程的进程号PID为 __B__。
+
+A  0   B  1   C  2   D  100
+
+> `init`总是第一个进程(进程号PID总是`1`)(课本P107)
+
+用ftp进行文件传输时，有两种模式  C   。 
+
+A Word和binary    B .txt和Word Document
+
+C ASCII和binary   D ASCII和Rich Text Format
+
+> [ftp数据传输方式和工作方式](https://blog.csdn.net/zhaoyangkl2000/article/details/78225709)
+
+> 文件传输模式：ASCII和二进制
+
+> 工作模式：主动和被动 还有一种不常用的单端口模式。
+
+
+26、下列关于链接描述，错误的是 __B__。 
+
+A 硬链接就是让链接文件的i节点号指向被链接文件的i节点 
+
+B 硬链接和符号连接都是产生一个新的i节点 
+
+C 链接分为硬链接和符号链接 
+
+D 硬连接不能链接目录文件
+
+```
+D 选项书里说 ln -d 可以硬链接自己的目录
+但是实测不行。
+B 应该才是错的。
+```
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3ly1fsm7z5hfrkj20k40cagm9.jpg)
+
+---
+
 ```
 设计一个Shell程序，在/userdata目录下建立50个目录，即user1～user50，并设置每个目录的权限，其中其他用户的权限为：读；文件所有者的权限为：读、写、执行；文件所有者所在组的权限为：读、执行。
 ```
@@ -303,3 +411,93 @@ exit 0
 ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fslo2hz87uj20jj0ewgmc.jpg)
 
 ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fslo45dt00j20ni082mxm.jpg)
+
+
+[shell脚本——判断文件的属性、内容](https://blog.csdn.net/dongxie_tk/article/details/77772460)
+
+```sh
+1、针对以下shell程序，写出每一句语句的意义，并写出整个程序的作用是什么？
+
+#!/bin/bash 使用bash来运行程序
+FILENAME= 定义一个变量
+echo “Input file name：” 提示用户输入一个文件名
+read FILENAME 将用户输入的内容赋值给变量
+if [ -c “$FILENAME” ] 判断文件是否是字符设备文件
+then 
+cp $FILENAME /dev 复制此文件到/dev目录下
+fi
+```
+
+```
+描述linux操作系统的体系结构，并使用图例表示，说明各部份之间的作用与关系。（课本P9）
+```
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsm9e78b87j20lx0frwfd.jpg)
+
+```
+3、说明VFS（虚拟文件系统）的作用，并使用图例表示。（课本P10）应该和P87的差不多
+```
+![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9lgt0pydj20a10baaa7.jpg)
+
+
+```makefile
+# 根据以下makefile文件内容，画出目标依赖关系图。
+
+OBJS = greeting.o my_app.o thank.o
+CC = gcc
+CFLAGS = -Wall -O –g
+my_app:${OBJS}
+    ${CC} ${OBJS} -o my_app
+thank.o:test\thank.c test\thank.h
+${CC} ${CFLAGS} -c test\thank.c
+greeting.o:functions\greeting.c functions\greeting.h
+    ${CC} ${CFLAGS} -c functions\greeting.c
+my_app.o:my_app.c functions\greeting.h
+    ${CC} ${CFLAGS} -c my_app.c -Ifunctions
+```
+
+> emm… 题目程序应该写错了。
+
+![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsmasprcudj20eb09tglt.jpg)
+
+
+```
+3、系统需要定期做数据库的备份工作，采用如下规则执行：
+（1）每星期五晚上21点30分开始以oracle用户执行/home/oracle/exportdata.sh程序导出数据库数据文件，数据文件以dmp为后缀，每次共有5个这样的文件生成，保存在/oracle/backup目录下；
+（2）待以上工作执行完毕后（大约需要运行3小时45分钟才结束），必须把导出来的数据文件进行打包成datafile.tar文件；
+（3）每个星期四晚上22点把/oracle/backup目录下的datafile.tar文件删除，以腾出空间。
+请根据以上描述给出相应的crontab文件内容。
+```
+
+[Linux 下以其他用户身份运行程序—— su、sudo、runuser](https://www.cnblogs.com/bodhitree/p/6018369.html)
+
+```sh
+su命令 用于切换当前用户身份到其他用户身份，变更时须输入所要变更的用户帐号与密码。（课本P96）
+
+语法
+su(选项)(参数)
+选项
+-:表示在切换用户的同时也改变环境变量
+-c<指令>或--command=<指令>：执行完指定的指令后，即恢复原来的身份；
+-f或——fast：适用于csh与tsch，使shell不用去读取启动文件；
+-l或——login：改变身份时，也同时变更工作目录，以及HOME,SHELL,USER,logname。此外，也会变更PATH变量；
+-m,-p或--preserve-environment：变更身份时，不要变更环境变量；
+-s<shell>或--shell=<shell>：指定要执行的shell；
+--help：显示帮助；
+--version；显示版本信息。
+
+tar的用法
+
+打包
+tar -cvf Desktop.tar Desktop/
+tar -zcvf Desktop.tar.gz Desktop/
+解压
+tar -xvf Desktop.tar
+tar -zxvf Destkop.tar.gz
+```
+
+```sh
+30 21 * * 5 su - oracle -c "/home/oracle/exportdata.sh"
+15 01 * * 5 su - oracle -c "tar -cvf datafile.tar /oracle/backup/*.dmp"
+0 22 * * 4 su - oracle -c "rm -f /oracle/backup/datafile.tar"
+```
