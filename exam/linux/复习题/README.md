@@ -55,7 +55,7 @@ VFS功能：Linux系统可以支持多种文件系统，为此，必须使用一
 1）运行独立的守护进程工作方式称作：stand－alone。它是Unix传统的C/S模式的访问模式。服务器监听（Listen）在一个特点的端口上等待客户端的联机。如果客户端产生一个连接请求，守护进程就创建（Fork）一个子服务器响应这个连接，而主服务器继续监听。以保持多个子服务器池等待下一个客户端请求。
 ```
 
-![](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9m0nnkivj20e4057wen.jpg)
+![stand-alone](https://ws1.sinaimg.cn/large/bdc70b0agy1fs9lw41uvej20bg058aa5.jpg)
 
 ```
 2）从守护进程的概念可以看出，对于系统所要通过的每一种服务，都必须运行一个监听某个端口连接所发生的守护进程，这通常意味着资源浪费。
