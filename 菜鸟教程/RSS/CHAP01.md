@@ -162,7 +162,7 @@ RSS 使用 XML 来编写
 每个 <item> 元素可定义 RSS feed 中的一篇文章或 "story"。
 ```
 
-以下为 `<channel>`的子元素
+以下为 `<item>`的子元素
 
 - `<author>` 元素
 
