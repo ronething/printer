@@ -1,4 +1,4 @@
-# day1
+# Day 1
 
 ## 第 1 章 数据库基础
 
@@ -128,7 +128,7 @@ show engines;
 
 当为某个表定义约束后，对该表做的所有SQL操作都必须满足约束的规则要求，否则操作将失败。
 
-    - 约束类型
+  - 约束类型
 
     ![](https://ws1.sinaimg.cn/large/ecb0a9c3gy1fsx3iv78z3j20kr0aljte.jpg)
 
