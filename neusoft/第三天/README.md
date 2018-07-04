@@ -317,3 +317,323 @@ FROM
 SHOW GRANTS FOR 'username'@'hostname';
 ```
 
+---
+
+## 第 10 章 表分区管理
+
+- 表分区
+
+```
+– 表分区通俗来讲就是允许把一个数据表根据一定的规则,跨文件系统划分成多个可以设置为任意大小的部分。
+```
+
+- 通过下面语句来查看本机 MySQL 是否支持分区:
+
+```sql
+show variables like '%partition%';
+```
+
+- 表为什么要分区
+
+```
+– 当表中的数据量不断增大,查询数据的速度就会变慢,应用程序的性能就会下降,这时就应该考虑对表进行分区。
+– 表进行分区后,逻辑上表仍然是一张完整的表,只是将表中的数据在物理上存放到多个表空间(物理文件上),这样查询数据时,不至于每次都扫描整张表。
+```
+
+- 分区类型
+
+```
+– RANGE分区
+– LIST分区
+– COLUMNS分区
+– HASH分区
+– KEY分区
+```
+
+- RANGE 分区
+
+```sql
+– range 分区基于属于一个给定连续区间的列值进行分配
+create table employees (
+    id int not null,
+    fname varchar(30),
+    lname varchar(30),
+    hired date not null default '1970-01-01',
+    separated date not null default '9999-12-31',
+    job_code int not null,
+    store_id int not null
+)
+    partition by range (store_id) (
+    partition p0 values less than (6),
+    partition p1 values less than (11),
+    partition p2 values less than (16),
+    partition p3 values less than maxvalue
+);
+```
+
+- LIST 分区
+
+```sql
+– list 分区类似range分区,它们的主要区别在于,list分区
+中每个分区的定义和选择是基于某列的值从属于一个集合,
+而range分区是从属于一个连续区间值的集合
+create table employees (
+    id int not null,
+    fname varchar(30),
+    lname varchar(30),
+    hired date not null default '1970-01-01',
+    separated date not null default '9999-12-31',
+    job_code int,
+    store_id int
+)
+    partition by list(store_id)
+    partition pnorth values in (3,5,6,9,17),
+    partition peast values in (1,2,10,11,19,20),
+    partition pwest values in (4,12,13,14,18),
+    partition pcentral values in (7,8,15,16)
+);
+```
+
+- COLUMNS 分区
+
+```
+– columns分区是range分区或list分区的一种变体,支持非整形字段作为分区的键,也可以用多个字段组合起来作为分区的键
+• columns分区可允许使用的分区键类型有:
+– 所有的整形:tinyint, smallint, mediumint, int ,bigint (和range分区和list分区相同),不包括decimal和float这种数字类型的。
+– date 和 datetime
+– 字符型:chra, varchar, binary, varbinary,不包括text和blob型
+```
+
+- HASH 分区
+
+```
+HASH分区
+– 要使用hash分区来分割一个表,要在create table 语句上添加一个“partition by hash (expr)”子句,其中“expr”是一个返回一个整数的表达式。它可以仅仅是字段类型为MySQL 整型的一列的名字。此外,需要在后面再添加一个“partitions num”子句,其中num 是一个非负的整数,它表示表将要被分割成分区的数量。
+– 如果没有包括一PARTITIONS子句,那么分区的数量将默认
+为1
+– 如果在关键字“PARTITIONS”后面没有加上分区的数量,将
+会出现语法错误。
+```
+
+示例：
+
+```sql
+create table employees (
+    id int not null,
+    fname varchar(30),
+    lname varchar(30),
+    hired date not null default '1970-01-01',
+    separated date not null default '9999-12-31',
+    job_code int,
+    store_id int
+)
+    partition by hash(year(hired))
+    partitions 4;
+```
+
+- KEY 分区
+
+```sql
+– key 分区按照key进行分区类似于按照hash分区,除了hash
+分区使用的用户定义的表达式,而key分区的哈希函数是由
+MySQL 服务器提供。
+create table tk (
+    col1 int not null,
+    col2 char(5),
+    col3 date
+)
+    partition by linear key (col1)
+    partitions 3;
+```
+
+- 分区管理 -- range 分区和 list 分区
+
+- 添加分区
+
+```sql
+• 添加分区
+– 要增加一个新的RANGE或LIST分区到一个前面已经分区了的
+表,使用“ALTER TABLE ... ADD PARTITION”语句。
+• 例如有一个组织的全体成员数据的分区表,该表的定义如下:
+
+create table members(
+    id int,
+    fname varchar(25),
+    lname varchar(25),
+    dob date
+)
+partition by range(year(dob))
+(
+    partition p0 values less than (1970),
+    partition p1 values less than (1980),
+    partition p2 values less than (1990)
+);
+
+
+• 添加分区
+• 假设成员的最小年纪是16岁。随着日历接近2005年年底,要接纳1990年(以及以后年份)出生的成员。可以按照下面的方式,修改成员表来容纳出生在1990-1999年之间的成员:
+alter table add partition (partition p3 values less than (2000));
+• 对于通过RANGE分区的表,只可以使用ADD PARTITION添加新的分区到分区列表的高端。设法通过这种方式在现有分区的前面或之间增加一个新的分区,将会导致下面的一个错误:
+alter table add partition (partition p3 values less
+than (1960));
+```
+
+```sql
+类似的可以增加新的分区到已经通过list分区的表。例如,假
+定有如下定义的一个表:
+create table tt(
+    id int,
+    data int
+)
+partition by list(data)
+(
+    partition p0 values in (5, 10, 15),
+    partition p1 values in (6, 12, 18)
+);
+
+
+• 添加分区
+• 可以通过下面的方法添加一个新的分区,用来保存拥有数据列值7,14和21的行:
+alter table tt add partition (partition p2 values in (7, 14, 21));
+• 注意:不能添加这样一个新的LIST分区,该分区包含有已经包含在现有分区值列表中的任意值。如果试图这样做,将会导致错误:
+alter table tt add partition (partition np values in
+(4, 8, 12));
+```
+
+- 修改分区
+
+```sql
+- 使用"reorganize partition"拆分或合并分区,没有数据丢失。在执行上面的语句中,MySQL 把保存在分区s0和s1中的所有数据都移到分区p0中。
+
+- “reorganize partition”的基本语法是:
+alter table tbl_name reorganize partition
+partition_list into (partition_definitions);
+```
+
+```sql
+-- 修改分区
+alter table members reorganize partition p0 into(
+partition s0 values less than (1960),
+partition s1 values less than (1970)
+);
+• alter table members reorganize partition s0,s1 into(
+partition p0 values less than (1970)
+);
+• alter table members reorganize partition p0,p1,p2,p3
+into (
+partition m0 values less than (1980),
+partition m1 values less than (2000)
+);
+alter table tt reorganize partition p1,np into(
+partition p1 values in (6, 18),
+partition np values in (4, 8, 12)
+);
+```
+
+> 修改`range`和`list`分区注意事项
+
+![](https://ws2.sinaimg.cn/large/006OWbT9gy1fsxvrcc71lj30k107jabw.jpg)
+
+![](https://ws1.sinaimg.cn/large/006OWbT9gy1fsxvrd7unvj30jm0a2ju5.jpg)
+
+- 删除分区
+
+```sql
+– 从一个按照range或list分区的表中删除一个分区,可以使
+用带一个drop partition子句的alter table命令来实现:
+• 例如删除分区:
+alter table tr drop partition p2;
+```
+
+---
+
+- 分区管理 -- HASH 分区和 
+KEY 分区
+
+```sql
+create table clients (
+    id int,
+    fname varchar(30),
+    lname varchar(30),
+    signed date
+)
+    partition by hash(month(signed)) 
+    partitions 12;
+```
+
+```sql
+不能使用与从按照range或list分区的表中删除分区相同的方式
+来从hash或key分区的表中删除分区。但是,可以使用“alter
+table ... coalesce partition”命令来合并hash或key分区。
+
+oalesce不能用来增加分区的数量,要增加顾客表的分区数量从
+12到18,使用“alter table ... add partition”,具体如下:
+alter table clients add partition partitions 6;（相当于12+6）
+•
+要减少分区的数量从12到6,执行下面的ALTER TABLE命令:
+alter table clients coalesce partition 6;（相当于12-6）
+```
+
+```
+对于按照HASH,KEY,LINEAR HASH,或LINEAR KEY分区的表,COALESCE能起到同样的作用。
+```
+
+```sql
+改变分区的方式
+alter table tablename partition by hash(id) partitions 2;
+重建分区
+alter table t1 rebuild partition p0, p1;
+优化分区:
+alter table t1 optimize partition p0, p1;
+分析分区
+alter table t1 analyze partition p3;
+修护分区:
+alter table t1 repair partition p0,p1;
+检查分区:
+alter table t1 check partition p1;
+```
+
+- 分区的局限性
+
+```sql
+关于Partitioning Keys, Primary Keys, and Unique Keys的限制
+– 在 mysql@5.1 中分区表对唯一约束有明确的规定,每一个唯一约束必须包含在分区表的分区键(也包括主键约束)。( 表中只能有一个有唯一标识的列)
+
+• 例如:
+create table t1(
+    id int not null,
+    uid int not null,
+    primary key (id),
+    unique key (uid)
+)
+partition by range (id)
+(
+    partition p0 values less than(5),
+    partition p1 values less than(10)
+);
+• ERROR 1503 (HY000): A UNIQUE INDEX must include all
+columns in the table's partitioning function
+```
+
+```sql
+• 关于函数的限制
+在建立分区表的语句中,只能包含例如ABS() 、CEILING()
+、FLOOR() 、DAY() 、HOUR() 、MINUTE() 、MOD() 、
+MONTH() 、QUARTER() 、SECOND() 、TO_DAYS() 、
+YEAR()等返回整型的函数。
+• 分区键必须是INT类型,或者通过表达式返回INT类型,可以为
+NULL。唯一的例外是当分区类型为KEY分区的时候,可以使用其
+他类型的列作为分区键( BLOB or TEXT 列除外)。
+create table tkc (c1 char)
+partition by key(c1)
+partitions 4;
+query ok, 0 rows affected (0.00 sec)
+```
+
+```
+• 运算限制
+– 支持加减乘等运算出现在分区表达式,但是运算后的结果必须是一个INT或者NULL。 |, &, ^, <<, >>, , ~ 等不允许出现在分区表达式。
+• 最多支持1024个分区,包括子分区。
+– 当你建立分区表包含很多分区但没有超过1024限制的时候,如果报错 Got error 24 from storage engine,那意味着你需要增大open_files_limit参数。
+```
+
