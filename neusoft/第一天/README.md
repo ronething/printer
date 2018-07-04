@@ -294,8 +294,8 @@ UPDATE table SET column = value [,column = value] [WHERE condition];
 <> | 与!=相同,例如a<>1
 <= | 小于或等于,例如a<=1
 < | 小于,例如a<1
->= | 大于或等于,例如a>=1
-> | 大于,例如a>1
+\>= | 大于或等于,例如a>=1
+\> | 大于,例如a>1
 IS NULL | 判断指定的值是否为NULL,例如a IS NULL
 IS NOT NULL | 判断指定的值是否不为NULL,例如a IS NOT NULL
 BETWEEN...AND | 判断操作数是否在指定的范围之间,例如a BETWEEN 1 AND 100

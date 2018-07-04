@@ -53,6 +53,9 @@ UNDEFINED(未定义的)。
 
 > 创建视图时,在子查询中使用列的别名
 
+![](https://ws1.sinaimg.cn/large/006OWbT9gy1fsxs87euesj30jn05x3z0.jpg
+)
+
 > 创建复杂视图
 
 
