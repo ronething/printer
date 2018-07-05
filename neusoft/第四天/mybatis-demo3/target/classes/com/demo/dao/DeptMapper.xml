@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.DeptMapper">
+
+	<resultMap type="dept" id="dept">
+		<id column="deptno" property="dno" />
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc" />
+	</resultMap>
+
+
+  <select id="findById" resultMap="dept">
+    select * from dept where deptno = #{id}
+  </select>
+  
+    <insert id="insert" parameterType="dept">
+  		insert into dept values (#{dno},#{dname},#{loc})
+  </insert>
+  
+  <delete id="delete">
+  		delete from dept where deptno=#{id}
+  </delete>
+  
+  <update id="update" parameterType="dept">
+  		update dept set dname=#{dname},loc=#{loc} where deptno=#{dno}
+  </update>
+</mapper>
