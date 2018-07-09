@@ -347,3 +347,109 @@ e277a2a - ronething, 12 hours ago : update
 
 `$ git commit --amend`
 
+- 取消暂存的文件
+
+> 例如，你已经修改了两个文件并且想要将它们作为两次独立的修改提交，但是却意外地输入了 git add * 暂存了它们两个。 如何只取消暂存两个中的一个呢？
+
+> 第一种(官方文档):
+
+```sh
+$ git add *
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+    modified:   CONTRIBUTING.md
+
+# 在 “Changes to be committed” 文字正下方，提示使用 git reset HEAD <file>... 来取消暂存。 所以，我们可以这样来取消暂存 CONTRIBUTING.md 文件：
+
+$ git reset HEAD CONTRIBUTING.md
+Unstaged changes after reset:
+M	CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+```
+
+> 第二种(个人认为这样也行):
+
+```sh
+touch test1
+touch test2
+git add .
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   test1
+        new file:   test2
+
+$ git rm --cached test2
+rm 'test2'
+
+$ ls -l test*
+-rw-r--r-- 1 Administrator 197121 0 Jul  8 11:04 test1
+-rw-r--r-- 1 Administrator 197121 0 Jul  8 11:04 test2
+
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   test1
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        test2
+
+```
+
+- 撤消对文件的修改
+
+`git checkout -- [file]`
+
+> 注:你需要知道 `git checkout -- [file]` 是一个危险的命令，这很重要。 你对那个文件做的任何修改都会消失 - 你只是拷贝了另一个文件来覆盖它。 除非你确实清楚不想要那个文件了，否则不要使用这个命令。
+
+> 在 Git 中任何 已提交的 东西几乎总是可以恢复的。 甚至那些被删除的分支中的提交或使用 `--amend` 选项覆盖的提交也可以恢复。然而，任何未提交的东西丢失后很可能再也找不到了。
+
+---
+
+## 2.5 Git 基础 - 远程仓库的使用
+
+- 远程仓库的使用
+
+- 查看远程仓库
+
+`git remote` 默认可以看到`origin`
+
+- 添加远程仓库
+
+`git remote add <shortname> <url>`
+
+- 从远程仓库中抓取与拉取
+
+`$ git fetch [remote-name]`
+
+> 运行 `git pull` 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。`git fetch`也会将数据拉去到本地仓库，但是不会自动合并。
+
+- 推送到远程仓库
+
+`git push [remote-name] [branch-name]`
+
