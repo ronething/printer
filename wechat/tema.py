@@ -8,7 +8,7 @@ class TeMa:
     def liuhe(self):
         try:
             ss=""
-            url=r"http://www.6hck.co/diaoyong/"
+            url=r"http://xxxxxxxxxx"
             response=request.urlopen(url,timeout=10)
             html=(response.read()[5000:]).decode("utf-8")
             opentime=html.find(u"最新开奖")
@@ -31,7 +31,7 @@ class TeMa:
             ss+="特码:"+balls[6]
             return ss
         except:
-            mpurl="http://m.6hck.vip"
+            mpurl="http://xxxxxx"
             return "抱歉暂时无法查询≧ ﹏ ≦\n点击自行查看"+mpurl
 '''
 a=TeMa()

@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 语法](#javascript-%E8%AF%AD%E6%B3%95)
+  - [JavaScript 字面量](#javascript-%E5%AD%97%E9%9D%A2%E9%87%8F)
+  - [JavaScript 变量](#javascript-%E5%8F%98%E9%87%8F)
+  - [JavaScript 关键字](#javascript-%E5%85%B3%E9%94%AE%E5%AD%97)
+  - [JavaScript 注释](#javascript-%E6%B3%A8%E9%87%8A)
+  - [JavaScript 数据类型](#javascript-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
+  - [JavaScript 函数](#javascript-%E5%87%BD%E6%95%B0)
+  - [JavaScript 字母大小写](#javascript-%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99)
+  - [JavaScript 字符集](#javascript-%E5%AD%97%E7%AC%A6%E9%9B%86)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 语法
 
 ## JavaScript 字面量

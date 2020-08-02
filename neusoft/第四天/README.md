@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Day 4](#day-4)
+  - [第 1 章 Mybatis框架入门](#%E7%AC%AC-1-%E7%AB%A0-mybatis%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8)
+  - [第 2 章 MyBatis核心配置与DAO开发](#%E7%AC%AC-2-%E7%AB%A0-mybatis%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E4%B8%8Edao%E5%BC%80%E5%8F%91)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Day 4
 
 ## 第 1 章 Mybatis框架入门

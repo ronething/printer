@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [第 3 章 管道符、重定向与环境变量](#%E7%AC%AC-3-%E7%AB%A0-%E7%AE%A1%E9%81%93%E7%AC%A6%E9%87%8D%E5%AE%9A%E5%90%91%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 第 3 章 管道符、重定向与环境变量
 
 - 重定向技术的 5 种模式

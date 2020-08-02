@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [vmware 安装 ubuntu 18.04 LTS](#vmware-%E5%AE%89%E8%A3%85-ubuntu-1804-lts)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
  # vmware 安装 ubuntu 18.04 LTS
 
 首先 我们要下载 ubuntu 镜像

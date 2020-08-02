@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 注释](#javascript-%E6%B3%A8%E9%87%8A)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 注释
 
 - 单行注释

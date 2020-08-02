@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Day 1](#day-1)
+  - [第 1 章 数据库基础](#%E7%AC%AC-1-%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80)
+  - [第 2 章 数据库和数据表管理](#%E7%AC%AC-2-%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%AE%A1%E7%90%86)
+  - [第 3 章 数据操作与事务控制](#%E7%AC%AC-3-%E7%AB%A0-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E4%B8%8E%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6)
+  - [第 4 章 简单查询](#%E7%AC%AC-4-%E7%AB%A0-%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Day 1
 
 ## 第 1 章 数据库基础

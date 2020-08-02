@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Day 3](#day-3)
+  - [第 8 章 视图和索引](#%E7%AC%AC-8-%E7%AB%A0-%E8%A7%86%E5%9B%BE%E5%92%8C%E7%B4%A2%E5%BC%95)
+  - [第 9 章 用户和权限管理](#%E7%AC%AC-9-%E7%AB%A0-%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86)
+  - [第 10 章 表分区管理](#%E7%AC%AC-10-%E7%AB%A0-%E8%A1%A8%E5%88%86%E5%8C%BA%E7%AE%A1%E7%90%86)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Day 3
 
 ## 第 8 章 视图和索引

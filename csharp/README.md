@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [防伪码生成](#%E9%98%B2%E4%BC%AA%E7%A0%81%E7%94%9F%E6%88%90)
+  - [0x00 实验要求](#0x00-%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82)
+  - [0x01 总体思路](#0x01-%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF)
+  - [0x02 最终代码以及效果](#0x02-%E6%9C%80%E7%BB%88%E4%BB%A3%E7%A0%81%E4%BB%A5%E5%8F%8A%E6%95%88%E6%9E%9C)
+  - [0x03 参考资料](#0x03-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 防伪码生成
 
 ## 0x00 实验要求

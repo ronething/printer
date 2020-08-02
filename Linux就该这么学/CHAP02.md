@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [第 2 章 新手必须掌握的 Linux 命令](#%E7%AC%AC-2-%E7%AB%A0-%E6%96%B0%E6%89%8B%E5%BF%85%E9%A1%BB%E6%8E%8C%E6%8F%A1%E7%9A%84-linux-%E5%91%BD%E4%BB%A4)
+  - [常用系统工作命令](#%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%B7%A5%E4%BD%9C%E5%91%BD%E4%BB%A4)
+  - [系统状态检测命令](#%E7%B3%BB%E7%BB%9F%E7%8A%B6%E6%80%81%E6%A3%80%E6%B5%8B%E5%91%BD%E4%BB%A4)
+  - [工作目录切换命令](#%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%88%87%E6%8D%A2%E5%91%BD%E4%BB%A4)
+  - [文本文件编辑命令](#%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%91%BD%E4%BB%A4)
+  - [文件目录管理命令](#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4)
+  - [打包压缩与搜索命令](#%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4)
+  - [复习题](#%E5%A4%8D%E4%B9%A0%E9%A2%98)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 第 2 章 新手必须掌握的 Linux 命令
 
 - `man`命令中常用按键以及用途

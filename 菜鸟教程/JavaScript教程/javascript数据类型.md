@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 数据类型](#javascript-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
+  - [JavaScript 拥有动态类型](#javascript-%E6%8B%A5%E6%9C%89%E5%8A%A8%E6%80%81%E7%B1%BB%E5%9E%8B)
+  - [JavaScript 字符串](#javascript-%E5%AD%97%E7%AC%A6%E4%B8%B2)
+  - [JavaScript 数字](#javascript-%E6%95%B0%E5%AD%97)
+  - [JavaScript 布尔](#javascript-%E5%B8%83%E5%B0%94)
+  - [JavaScript 数组](#javascript-%E6%95%B0%E7%BB%84)
+  - [声明变量类型](#%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 数据类型
 
 `字符串（String）、数字(Number)、布尔(Boolean)、数组(Array)、对象(Object)、空（Null）、未定义（Undefined）。`

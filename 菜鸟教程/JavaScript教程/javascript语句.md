@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 语句](#javascript-%E8%AF%AD%E5%8F%A5)
+  - [JavaScript 语句](#javascript-%E8%AF%AD%E5%8F%A5-1)
+  - [分号 ;](#%E5%88%86%E5%8F%B7-)
+  - [JavaScript 代码块](#javascript-%E4%BB%A3%E7%A0%81%E5%9D%97)
+  - [JavaScript 语句标识符](#javascript-%E8%AF%AD%E5%8F%A5%E6%A0%87%E8%AF%86%E7%AC%A6)
+  - [空格](#%E7%A9%BA%E6%A0%BC)
+  - [对代码行进行折行](#%E5%AF%B9%E4%BB%A3%E7%A0%81%E8%A1%8C%E8%BF%9B%E8%A1%8C%E6%8A%98%E8%A1%8C)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 语句
 
 ## JavaScript 语句

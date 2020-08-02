@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 简介](#javascript-%E7%AE%80%E4%BB%8B)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 简介
 
 - JavaScript 是脚本语言

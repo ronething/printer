@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Git 基础](#git-%E5%9F%BA%E7%A1%80)
+  - [2.1 Git 基础 - 获取 Git 仓库](#21-git-%E5%9F%BA%E7%A1%80---%E8%8E%B7%E5%8F%96-git-%E4%BB%93%E5%BA%93)
+  - [2.2 Git 基础 - 记录每次更新到仓库](#22-git-%E5%9F%BA%E7%A1%80---%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93)
+  - [2.3 Git 基础 - 查看提交历史](#23-git-%E5%9F%BA%E7%A1%80---%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2)
+  - [2.4 Git 基础 - 撤消操作](#24-git-%E5%9F%BA%E7%A1%80---%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C)
+  - [2.5 Git 基础 - 远程仓库的使用](#25-git-%E5%9F%BA%E7%A1%80---%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Git 基础
 
 ## 2.1 Git 基础 - 获取 Git 仓库

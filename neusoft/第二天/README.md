@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Day 2](#day-2)
+  - [第 5 章 常用函数](#%E7%AC%AC-5-%E7%AB%A0-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0)
+  - [第 6 章 多表连接查询](#%E7%AC%AC-6-%E7%AB%A0-%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2)
+  - [第 7 章 高级查询](#%E7%AC%AC-7-%E7%AB%A0-%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Day 2
 
 ## 第 5 章 常用函数

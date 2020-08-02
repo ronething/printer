@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [JavaScript 输出](#javascript-%E8%BE%93%E5%87%BA)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # JavaScript 输出
 
 - JavaScript 显示数据

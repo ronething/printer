@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [软件体系复习](#%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E5%A4%8D%E4%B9%A0)
+  - [知识点？](#%E7%9F%A5%E8%AF%86%E7%82%B9)
+  - [复习题](#%E5%A4%8D%E4%B9%A0%E9%A2%98)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 软件体系复习
 
 ---

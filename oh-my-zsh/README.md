@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Ubuntu 18.04 LTS 安装oh-my-zsh](#ubuntu-1804-lts-%E5%AE%89%E8%A3%85oh-my-zsh)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Ubuntu 18.04 LTS 安装oh-my-zsh
 
 项目链接:https://github.com/robbyrussell/oh-my-zsh

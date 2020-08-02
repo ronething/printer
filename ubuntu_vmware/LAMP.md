@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Ubuntu 18.04 LTS 搭建 LAMP 环境](#ubuntu-1804-lts-%E6%90%AD%E5%BB%BA-lamp-%E7%8E%AF%E5%A2%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Ubuntu 18.04 LTS 搭建 LAMP 环境
 
 这次我们来了解一下ubuntu如何搭建lamp环境。

@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [1 起步](#1-%E8%B5%B7%E6%AD%A5)
+  - [1.1 起步 - 关于版本控制](#11-%E8%B5%B7%E6%AD%A5---%E5%85%B3%E4%BA%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6)
+  - [1.2 起步 - Git 简史](#12-%E8%B5%B7%E6%AD%A5---git-%E7%AE%80%E5%8F%B2)
+  - [1.3 起步 - Git 基础](#13-%E8%B5%B7%E6%AD%A5---git-%E5%9F%BA%E7%A1%80)
+  - [1.4 起步 - 命令行](#14-%E8%B5%B7%E6%AD%A5---%E5%91%BD%E4%BB%A4%E8%A1%8C)
+  - [1.5 起步 - 安装 Git](#15-%E8%B5%B7%E6%AD%A5---%E5%AE%89%E8%A3%85-git)
+  - [1.6 起步 - 初次运行 Git 前的配置](#16-%E8%B5%B7%E6%AD%A5---%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE)
+  - [1.7 起步 - 获取帮助](#17-%E8%B5%B7%E6%AD%A5---%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9)
+  - [1.8 起步 - 总结](#18-%E8%B5%B7%E6%AD%A5---%E6%80%BB%E7%BB%93)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 1 起步
 
 ## 1.1 起步 - 关于版本控制
